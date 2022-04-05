@@ -20,7 +20,7 @@ jobs:
         with:
           submodules: true
       - uses: action/setup-node@v2
-        name: node setup
+        name: Node Setup
         with: 
           node-version: "14"
       - run: npm run test
