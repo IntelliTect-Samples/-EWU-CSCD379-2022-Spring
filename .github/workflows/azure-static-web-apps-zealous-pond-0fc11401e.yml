@@ -19,7 +19,7 @@ jobs:
         name: checkout source
         with:
           submodules: true
-      - uses: action/setup-node@v2
+      - uses: actions/setup-node@v2
         name: Node Setup
         with: 
           node-version: "14"
