@@ -15,8 +15,8 @@
 </template>
 
 <script lang="ts">//added lang="ts"
-import Vue from 'vue' //import Vue
+import Vue from "vue" //import Vue
 export default class IndexPage extends Vue{
-  name: string = 'IndexPage'
+  name: string = "IndexPage"
 }
 </script>
