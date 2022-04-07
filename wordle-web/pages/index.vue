@@ -5,7 +5,7 @@
         <NuxtLogo />
         <VuetifyLogo />
       </v-card>
-      <v-card>
+      <v-card loading>
         <v-card-title class="headline">
           Welcome to the NEW Vuetify + Nuxt.js template
         </v-card-title>
