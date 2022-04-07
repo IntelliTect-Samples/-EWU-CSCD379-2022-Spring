@@ -16,6 +16,9 @@
 
 <script lang="ts">//added lang="ts"
 import Vue from "vue" //import Vue
+import Component from "vue-class-component"
+
+@Component
 export default class IndexPage extends Vue{
   name: string = "IndexPage"
 }
