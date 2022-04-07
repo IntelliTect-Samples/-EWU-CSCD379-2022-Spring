@@ -14,8 +14,9 @@
   </v-row>
 </template>
 
-<script>
-export default {
-  name: 'InspirePage',
+<script lang="ts">//added lang="ts"
+import Vue from 'vue' //import Vue
+export default class IndexPage extends Vue{
+  name: string = 'IndexPage'
 }
 </script>
