@@ -73,15 +73,30 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
+          <v-btn color="primary" nuxt to="/inspire"> {{ButtonText}} </v-btn>
+          <v-btn color="primary" :loading="isLoading" @click="changeButtonText"> Inspire Me! </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
 </template>
 
-<script>
-export default {
-  name: 'IndexPage',
+<script lang="ts">
+import Vue from "vue"
+import Component from 'vue-class-component'
+
+@Component
+export default class IndexPage extends Vue{
+  name: 'IndexPage';
+  buttonText: string = "Inspire me!";
+  isLoading: boolean = false;
+
+  changeButtonText() {
+    this.buttonText = this.buttonText === 'Inspire Me!' ? 'Inspire me agian!' : 'Inspire Me!';
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
+  }
 }
 </script>
