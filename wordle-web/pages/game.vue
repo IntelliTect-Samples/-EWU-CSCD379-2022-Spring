@@ -6,7 +6,7 @@
         >
             <v-card-title>Guess & Check (Dictionary Edition)</v-card-title>
             <v-card-text>Eventually <br>body <br>goes <br>here...</v-card-text>
-            <v-btn color="primary" nuxt to="/inspire"> Home </v-btn>
+            <v-btn color="primary" nuxt to="/"> Home </v-btn>
         </v-card>
 
     </v-app>
