@@ -1,5 +1,6 @@
 # wordle-web
-
+Azure website link.
+https://zealous-pond-0fc11401e.1.azurestaticapps.net
 ## Build Setup
 
 ```bash
