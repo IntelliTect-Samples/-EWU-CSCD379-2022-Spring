@@ -4,7 +4,7 @@
       <img src="/v.png" alt="Vuetify.js" class="mb-5" />
       <blockquote class="blockquote">
         &#8220;First, solve the problem. Then, write the code.&#8221;
-        {{name}}
+        <!-- {{name}} this will have the "name" from the class 'IndexPage' appear here-->
         <footer>
           <small>
             <em>&mdash;John Johnson</em>
@@ -15,12 +15,13 @@
   </v-row>
 </template>
 
-<script lang="ts">//added lang="ts"
-import Vue from "vue" //import Vue
-import Component from "vue-class-component"
+<script lang="ts">
+//added lang="ts" for TypeScript
+import Vue from 'vue' //import Vue
+import Component from 'vue-class-component'
 
 @Component
-export default class IndexPage extends Vue{
-  name: string = "IndexPage"
+export default class IndexPage extends Vue {
+  name: string = 'IndexPage'
 }
 </script>
