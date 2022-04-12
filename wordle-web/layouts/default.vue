@@ -81,6 +81,11 @@ export default {
           title: 'Inspire',
           to: '/inspire',
         },
+        {
+          icon: 'mdi-gamepad-variant',
+          title: 'Wordle',
+          to: '/game',
+        },
       ],
       miniVariant: false,
       right: true,
