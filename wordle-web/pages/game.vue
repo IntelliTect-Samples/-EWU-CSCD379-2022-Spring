@@ -12,11 +12,11 @@
       </blockquote>
       <v-card>
         <v-card-title class="headline">
-          Werlcome to the start of something medicore. 
+          Welcome to the start of the Next Big Thing™ 
         </v-card-title>
         <v-card-text>
           <div class="text-xs-right">
-            <em><small>&mdash; Hey We finally go it working!!!! NEW Game coming soon, so stay tuned!</small></em>
+            <em><small>The world of real time competitive multiplayer Wordle is about to arrive...</small></em>
           </div>
           <hr class="my-3" />
 
