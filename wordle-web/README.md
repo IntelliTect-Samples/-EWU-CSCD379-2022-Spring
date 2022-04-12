@@ -1,4 +1,4 @@
-# wordle-web
+# wordle-app
 
 ## Build Setup
 
