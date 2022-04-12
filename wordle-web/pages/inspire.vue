@@ -10,6 +10,7 @@
           </small>
         </footer>
       </blockquote>
+      <v-btn color="secondary" nuxt to="/"> home </v-btn>
     </v-col>
   </v-row>
 </template>
