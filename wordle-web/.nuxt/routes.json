@@ -1,0 +1,16 @@
+[
+  {
+    "name": "inspire",
+    "path": "/inspire",
+    "component": "/Users/gomez/Documents/GitHub/CSCD379SPRING2022/wordle-web/pages/inspire.vue",
+    "chunkName": "pages/inspire",
+    "_name": "_39c9e0e2"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/gomez/Documents/GitHub/CSCD379SPRING2022/wordle-web/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_a65f924c"
+  }
+]
