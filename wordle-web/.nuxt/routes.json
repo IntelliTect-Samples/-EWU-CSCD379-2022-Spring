@@ -2,15 +2,15 @@
   {
     "name": "inspire",
     "path": "/inspire",
-    "component": "/Users/gomez/Documents/GitHub/CSCD379SPRING2022/wordle-web/pages/inspire.vue",
+    "component": "/Users/gomez/Documents/GitHub/EWU-CSCD379-2022-Spring/wordle-web/pages/inspire.vue",
     "chunkName": "pages/inspire",
-    "_name": "_39c9e0e2"
+    "_name": "_8ebdb7f0"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "/Users/gomez/Documents/GitHub/CSCD379SPRING2022/wordle-web/pages/index.vue",
+    "component": "/Users/gomez/Documents/GitHub/EWU-CSCD379-2022-Spring/wordle-web/pages/index.vue",
     "chunkName": "pages/index",
-    "_name": "_a65f924c"
+    "_name": "_7a6be900"
   }
 ]

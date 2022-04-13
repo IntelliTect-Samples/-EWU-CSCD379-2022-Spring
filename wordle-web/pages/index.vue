@@ -8,7 +8,8 @@
       <v-card>
 
         <v-card-title class="headline">
-          Welcome to the vuetify + Nuxt.js template
+          WELCOME TO THE NEWEST WORD GAME!
+                  ELDROW
         </v-card-title>
         <v-card-text>
           <p>
@@ -89,7 +90,7 @@ import Component from 'vue-class-component'
 @Component
 export default class IndexPage extends Vue{
     name: String = 'IndexPage';
-    buttonText: string = "inspire me!";
+    buttonText: string = "GAME IT";
 
 
 }
