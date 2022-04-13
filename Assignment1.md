@@ -2,6 +2,8 @@
 
 ## Assignment 1
 
+Ben Burbank Azure deployment website (partner with Hewr Tarkhany) : https://purple-meadow-03f38911e.1.azurestaticapps.net/
+
 The purpose of this assignment is to solidify your learning of:
 
 - Building a Nuxt, Vue, Vuetify, TypeScript App
@@ -42,3 +44,8 @@ The purpose of this assignment is to solidify your learning of:
 
 - Come up with up to three unique ideas for stories we could implement as part of our project. Post these in your readme.md. ❌✅
 - One point per idea up to three points
+
+- Ben Burbank (partner with Hewr Tarkhany) ideas:
+- 1) When the user first "logs in," the wordle app will begin "solving itself" to show the user how to play.
+- 2) When the user enters a possible answer, there is an audio/visual feedback element, where worse or better sounds play (e.g., trumpets or buzzers) with a red-tinted screen if all letters are wrong and confetti drop if the word is guessed correctly.
+- 3) buttons at the top of the app allow the user to select an alternate language.
