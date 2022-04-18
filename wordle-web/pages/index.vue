@@ -73,6 +73,9 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
+          <v-btn @click="goToGameboard()" color="primary">
+            To Gameboard
+        </v-btn>
           <v-btn color="primary" nuxt to="/inspire"> {{buttonText}} </v-btn>
           <v-btn color="secondary" :loading="isLoading" @click="changeButtonText"> Change Text </v-btn>
         </v-card-actions>
@@ -97,6 +100,10 @@ export default class IndexPage extends Vue{
         setTimeout(() => {
             this.isLoading = false;
         }, 1000);
+    }
+
+    goToGameboard() {
+        this.$router.push('/game');
     }
 }
 </script>
