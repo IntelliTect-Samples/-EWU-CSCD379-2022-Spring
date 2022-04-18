@@ -1,4 +1,5 @@
 # wordle-web
+URL: https://wonderful-ground-0af16ad1e.1.azurestaticapps.net
 
 ## Build Setup
 
