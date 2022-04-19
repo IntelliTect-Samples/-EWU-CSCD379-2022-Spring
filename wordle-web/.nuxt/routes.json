@@ -1,10 +1,10 @@
 [
   {
-    "name": "inspire",
-    "path": "/inspire",
-    "component": "/Users/gomez/Documents/GitHub/EWU-CSCD379-2022-Spring/wordle-web/pages/inspire.vue",
-    "chunkName": "pages/inspire",
-    "_name": "_8ebdb7f0"
+    "name": "game",
+    "path": "/game",
+    "component": "/Users/gomez/Documents/GitHub/EWU-CSCD379-2022-Spring/wordle-web/pages/game.vue",
+    "chunkName": "pages/game",
+    "_name": "_c35b5c98"
   },
   {
     "name": "index",
