@@ -18,7 +18,7 @@
       <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
     </v-alert>
 
-    <game-board :wordleGame="wordleGame" />
+    <gameboard :wordleGame="wordleGame" />
 
     <keyboard :wordleGame="wordleGame" />
   </v-container>
@@ -28,8 +28,8 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { WordsService } from '~/scripts/wordsService'
 import { GameState, WordleGame } from '~/scripts/wordleGame'
-import KeyBoard from '@/components/keyboard.vue'
-import GameBoard from '@/components/game-board.vue'
+import KeyBoard from '~/components/keyboard.vue'
+import GameBoard from '~/components/gameboard.vue'
 import { Word } from '~/scripts/word'
 
 @Component({ components: { KeyBoard, GameBoard } })

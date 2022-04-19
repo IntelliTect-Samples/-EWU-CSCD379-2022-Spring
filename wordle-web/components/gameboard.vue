@@ -9,6 +9,7 @@
             </v-card-text>
           </v-card>
         </v-col>
+      <hintButton/>
       </v-row>
     </v-container>
   </v-card>
@@ -42,5 +43,6 @@ export default class GameBoard extends Vue {
     if (letter === null) return ''
     return letter.letterColor
   }
+  
 }
 </script>
