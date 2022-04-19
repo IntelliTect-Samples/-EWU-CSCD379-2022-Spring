@@ -1,51 +1,63 @@
 <template>
-    <v-container fill-height justify-center>
+  <v-container fluid fill-height justify-center>
+    <v-tooltip bottom>
+      <template #activator="{ on, attrs }">
+        <v-btn color="primary" nuxt to="/" fab v-bind="attrs" v-on="on">
+          <v-icon> mdi-home </v-icon>
+        </v-btn>
+      </template>
+      <span> Go Home </span>
+    </v-tooltip>
 
+    <v-card-text class="text-h1 font-weight-black text-center">
+      Wordle!
+    </v-card-text>
 
-            <v-btn to="/" color="primary" fab>
-                <v-icon>mdi-home</v-icon>
-            </v-btn>
+    <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
+      {{ gameResult.text }}
+      <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
+    </v-alert>
 
-            <v-tooltip bottom>
-                <template #activator="{ on, attrs }">
-                    <v-btn color="primary" dark v-bind="attrs" v-on="on"> Left </v-btn>
-                </template>
-                <span>Left tooltip</span>
-            </v-tooltip>
+    <game-board :wordleGame="wordleGame" />
 
-            <v-card-text class="text-h1 font-wight-black text-center">
-                Wordles with Turtles
-            </v-card-text>
-
-            <v-card-text>
-                <p> Yertle was a turtle who knew oh so many wordles. As a young turtle, he was a bit of a nerdle (he even wore a girtle!). Now he's a bit of a flirtle, though his looks make milk curdle, and his favorite scent is myrtle and his favorite color is purple. He calls his home a yurtle!</p>
-                <p> Yertle was a turtle who knew oh so many wordles. As a young turtle, he was a bit of a nerdle (he even wore a girtle!). Now he's a bit of a flirtle, though his looks make milk curdle, and his favorite scent is myrtle and his favorite color is purple. He calls his home a yurtle!</p>
-                <p> Yertle was a turtle who knew oh so many wordles. As a young turtle, he was a bit of a nerdle (he even wore a girtle!). Now he's a bit of a flirtle, though his looks make milk curdle, and his favorite scent is myrtle and his favorite color is purple. He calls his home a yurtle!</p>
-            </v-card-text>
-
-            <gameboard :wordleGame="wordleGame" />
-
-            <v-card-actions>
-                <v-btn color="primary" nuxt to="/"> Back to Main </v-btn>
-            </v-card-actions>
-
-            <keyboard :wordleGame="wordleGame" />
-                
-            
-
-        </v-container>
+    <keyboard :wordleGame="wordleGame" />
+  </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { WordsService } from '~/scripts/wordsService'
+import { GameState, WordleGame } from '~/scripts/wordleGame'
+import KeyBoard from '@/components/keyboard.vue'
+import GameBoard from '@/components/game-board.vue'
+import { Word } from '~/scripts/word'
 
-import  Keyboard from '@/components/keyboard.vue'
-import Gameboard from '@/components/gameboard.vue'
-import WordleGame from '@/scripts/wordleGame'
-import wordsService from '@/scripts/wordsService'
-
-@Component({ components: { Keyboard, Gameboard } })
+@Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
+  word: string = WordsService.getRandomWord()
+  wordleGame = new WordleGame(this.word)
+
+  resetGame() {
+    this.word = WordsService.getRandomWord()
+    this.wordleGame = new WordleGame(this.word)
+  }
+
+  get gameResult() {
+    if (this.wordleGame.state === GameState.Won) {
+      return { type: 'success', text: 'Yay! You won!' }
+    }
+    if (this.wordleGame.state === GameState.Lost) {
+      return { type: 'error', text: `You lost... :( The word was ${this.word}` }
+    }
+    return { type: '', text: '' }
+  }
   
+  getLetter(row: number, index: number) {
+    const word: Word = this.wordleGame.words[row - 1]
+    if (word !== undefined) {
+      return word.letters[index - 1]?.char ?? ''
+    }
+    return ''
+  }
 }
 </script>
