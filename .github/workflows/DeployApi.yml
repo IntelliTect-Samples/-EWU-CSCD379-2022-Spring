@@ -28,6 +28,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'Wordle.api/**'
   workflow_dispatch:
 
 jobs:
