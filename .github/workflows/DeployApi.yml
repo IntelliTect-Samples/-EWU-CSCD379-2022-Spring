@@ -53,6 +53,15 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
+        
+      - name: Test with dotnet
+        run: dotnet test --logger "trx;LogFileName=test-results.trx" --no-restore
+        
+      - uses: actions/upload-artifact@v2  # upload test results
+        if: success() || failure()        # run this step even if previous step failed
+        with:
+          name: dotnet-trx
+          path: test-results.trx
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
