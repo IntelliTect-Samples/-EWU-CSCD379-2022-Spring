@@ -8,16 +8,16 @@ namespace Wordle.api.Controllers
     public class LeaderBoardController : ControllerBase
     {
         private readonly ILogger<LeaderBoardController> _logger;
-        private readonly LeaderBoardService _leaderBoardService;
+        private readonly ILeaderBoardService _leaderBoardService;
         
-        public LeaderBoardController(ILogger<LeaderBoardController> logger, LeaderBoardService leaderBoardService)
+        public LeaderBoardController(ILogger<LeaderBoardController> logger, ILeaderBoardService leaderBoardService)
         {
             _logger = logger;
             _leaderBoardService = leaderBoardService;
         }
 
         [HttpGet()]
-        public IEnumerable<LeaderBoardService.Score> Get()
+        public IEnumerable<Score> Get()
         {
             return _leaderBoardService.GetHighScores();
         }
