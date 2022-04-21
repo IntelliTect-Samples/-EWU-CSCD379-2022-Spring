@@ -9,7 +9,7 @@
             </v-card-text>
           </v-card>
         </v-col>
-      <hintButton/>
+        <hintButton v-if="wordleGame.displayHints[row]" :words="wordleGame.hints[row]" />
       </v-row>
     </v-container>
   </v-card>
@@ -20,11 +20,11 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { WordleGame } from '~/scripts/wordleGame'
 import { Word } from '~/scripts/word'
 import { Letter } from '~/scripts/letter'
-
 @Component({ components: {} })
 export default class GameBoard extends Vue {
   @Prop({ required: true })
   wordleGame!: WordleGame
+
 
   getLetter(row: number, index: number): Letter | null {
     const word: Word = this.wordleGame.words[row - 1]
@@ -43,6 +43,5 @@ export default class GameBoard extends Vue {
     if (letter === null) return ''
     return letter.letterColor
   }
-  
 }
 </script>

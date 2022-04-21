@@ -6,8 +6,8 @@
     >
     <template v-slot:activator="{ on, attrs }">
     <v-btn
-  color="rgba(0,255,0,0.8)"
-  outlined = true
+  color="info"
+  outlined = "true"
   elevation="4"
   fab
   right
@@ -27,8 +27,8 @@
           v-model="dialogm1"
           column
         >
-        <v-chip v-for = "words in this.words" :key="words">
-          {{words}}
+        <v-chip v-for = "word in this.words" :key="word">
+          {{word}}
         </v-chip>
       </v-chip-group>
     </v-card-text>
@@ -41,15 +41,9 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component({ components: {} })
 export default class Wordslist extends Vue {
- words :string[] = ['house', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard'
- , 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard'
- , 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard'
- , 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard'
- , 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard'
- , 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard'
- , 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard'
- , 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard'
- , 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard', 'talent', 'posts', 'hoard']
+@Prop({required: false})
+words!: string[]
+
 
  displayHints(){
 

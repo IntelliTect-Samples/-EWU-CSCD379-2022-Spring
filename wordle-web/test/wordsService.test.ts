@@ -11,4 +11,25 @@ describe('Word Service', () => {
   test('Words are private', () => {
     expect((WordsService as any).words).toBeUndefined()
   })
+
+  test('validWords returns proper words', ()=>{
+    const word = "a?orn"
+    const validWords = WordsService.validWords(word)
+    expect (validWords).toHaveLength(2)
+    expect (validWords[0]).toBe("acorn")
+  })
+
+  test ('validWords returns empty array on no matches',()=>{
+    const word = "jjjj?"
+    const validWords = WordsService.validWords(word)
+    expect (validWords).toHaveLength(0)
+  })
+
+  test ('validWords can return all words', ()=>{
+    const word = "?????"
+    const validWords = WordsService.validWords(word)
+    expect (validWords).toHaveLength(631)
+
+  })
+
 })
