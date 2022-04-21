@@ -27,8 +27,10 @@
           v-model="dialogm1"
           column
         >
-        <v-chip v-for = "word in this.words" :key="word">
-          {{word}}
+        <v-chip color="info" v-for = "word in this.words" :key="word"
+          @click="logWord(word)"
+        >
+          {{word}} 
         </v-chip>
       </v-chip-group>
     </v-card-text>
@@ -44,6 +46,9 @@ export default class Wordslist extends Vue {
 @Prop({required: false})
 words!: string[]
 
+  logWord(word: string){
+    console.log(word);
+  }
 
  displayHints(){
 
