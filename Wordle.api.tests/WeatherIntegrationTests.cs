@@ -14,6 +14,7 @@ using Wordle.Api;
 namespace Wordle.Api.Tests
 {
     [TestClass]
+    [TestCategory("Integration")]
     public class WeatherIntegrationTests: IntegrationTestBase
     {
         /// <summary>
