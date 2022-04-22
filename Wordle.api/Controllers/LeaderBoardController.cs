@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Wordle.Api.Services;
 
 namespace Wordle.Api.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("LeaderBoard")]
     public class LeaderBoardController : ControllerBase
     {
