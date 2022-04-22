@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wordle.api.tests
+namespace Wordle.Api.Tests
 {
     [TestClass]
     public class TestLoggerTests

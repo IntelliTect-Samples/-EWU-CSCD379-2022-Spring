@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using Wordle.api.Controllers;
+using Wordle.Api.Controllers;
 
-namespace Wordle.api.tests
+namespace Wordle.Api.Tests
 {
     [TestClass]
     public class WeatherControllerTests

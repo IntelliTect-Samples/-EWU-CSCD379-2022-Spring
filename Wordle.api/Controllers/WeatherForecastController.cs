@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Wordle.api.Controllers
+namespace Wordle.Api.Controllers
 {
     [ApiController]
     [Route("Weather")]
@@ -21,6 +21,7 @@ namespace Wordle.api.Controllers
         [HttpGet()]
         public IEnumerable<WeatherForecast> Get()
         {
+            _logger.LogInformation("Get Weather");
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),

@@ -1,28 +1,38 @@
-using Wordle.api.Services;
+using Wordle.Api.Services;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace Wordle.Api
+{
+    public partial class Program
+    {
+        static void Main(string[] args)
+        {
 
-// Add services to the container.
+            var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddTransient<LeaderBoardService>();
+            // Add services to the container.
 
-var app = builder.Build();
+            builder.Services.AddControllers();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+            builder.Services.AddTransient<LeaderBoardService>();
 
-// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-//}
+            var app = builder.Build();
 
-app.UseHttpsRedirection();
+            // Configure the HTTP request pipeline.
+            //if (app.Environment.IsDevelopment())
+            //{
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            //}
 
-app.UseAuthorization();
+            app.UseHttpsRedirection();
 
-app.MapControllers();
+            app.UseAuthorization();
 
-app.Run();
+            app.MapControllers();
+
+            app.Run();
+        }
+    }
+}

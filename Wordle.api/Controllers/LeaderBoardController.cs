@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Wordle.api.Services;
+using Wordle.Api.Services;
 
-namespace Wordle.api.Controllers
+namespace Wordle.Api.Controllers
 {
     [ApiController]
     [Route("LeaderBoard")]
@@ -19,6 +19,7 @@ namespace Wordle.api.Controllers
         [HttpGet()]
         public IEnumerable<LeaderBoardService.Score> Get()
         {
+            _logger.LogInformation("Get LeaderBoard");
             return _leaderBoardService.GetHighScores();
         }
 
