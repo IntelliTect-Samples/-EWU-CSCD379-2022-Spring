@@ -1,6 +1,6 @@
 ﻿namespace Wordle.Api.Services
 {
-    public class LeaderBoardService
+    public class LeaderBoardService: ILeaderBoardService
     {
         private readonly ILogger<LeaderBoardService> _logger;
         public LeaderBoardService(ILogger<LeaderBoardService> logger)
@@ -17,20 +17,6 @@
                 new Score("Hildegaard", 2.5, 8),
                 new Score("Brunhilde", 4.2, 20),
             };
-        }
-
-        public class Score
-        {
-            public string Name { get; set; }
-            public double Average { get; set; }
-            public int GameCount { get; set; }
-
-            public Score(string name, double average, int gameCount)
-            {
-                Name = name;
-                Average = average;
-                GameCount = gameCount;
-            }
         }
     }
 }
