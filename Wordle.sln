@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wordle.Api", "Wordle.api\Wordle.Api.csproj", "{73E06722-6CB3-4116-A84D-2605AD5A78AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wordle.Api", "Wordle.Api\Wordle.Api.csproj", "{73E06722-6CB3-4116-A84D-2605AD5A78AF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wordle.Api.Tests", "Wordle.Api.Tests\Wordle.Api.Tests.csproj", "{24A6C140-363B-4F8F-B986-3E74D6ACCFA6}"
 EndProject
