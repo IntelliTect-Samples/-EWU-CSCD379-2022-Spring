@@ -5,7 +5,6 @@ using Wordle.Api.Services;
 namespace Wordle.Api.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("LeaderBoard")]
     public class LeaderBoardController : ControllerBase
     {
@@ -25,5 +24,10 @@ namespace Wordle.Api.Controllers
             return _leaderBoardService.GetHighScores();
         }
 
+        [HttpPost()]
+        public Score SubmitScore(string name, int numberOfAttempts)
+        {
+            return _leaderBoardService.UpdateScore(name, numberOfAttempts);
+        }
     }
 }
