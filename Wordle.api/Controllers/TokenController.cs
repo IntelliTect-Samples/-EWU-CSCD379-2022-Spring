@@ -28,19 +28,19 @@ namespace Wordle.Api.Controllers
         }
 
         [HttpPost("GetToken")]
-        public async Task<Object> GetToken([FromBody] UserLoginInfo userInfo)
+        public async Task<IActionResult> GetToken([FromBody] UserLoginInfo userInfo)
         {
             if (string.IsNullOrWhiteSpace(userInfo.Email) ||
                 !userInfo.Email.Contains("@") ||
                 string.IsNullOrWhiteSpace(userInfo.Password))
             {
-                throw new System.Web.Http.HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
 
-            var user = _db.Users.First(u => u.NormalizedEmail == userInfo.Email.ToUpper());
+            var user = _db.Users.FirstOrDefault(u => u.NormalizedEmail == userInfo.Email.ToUpper());
             if (user == null)
             {
-                throw new System.Web.Http.HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
 
             var result = await _authenticationHandler.CheckPasswordAsync(user, userInfo.Password);
@@ -63,16 +63,16 @@ namespace Wordle.Api.Controllers
                                 expires: DateTime.Now.AddDays(1),
                                 signingCredentials: credentials);
                 var jwt_token = new JwtSecurityTokenHandler().WriteToken(token);
-                return new { data = jwt_token };
+                return Ok(new { data = jwt_token });
             }
             else
             {
-                throw new System.Web.Http.HttpResponseException(HttpStatusCode.Unauthorized);
+                return Unauthorized();
             }
         }
 
         [HttpPost("CreateUser")]
-        public async Task<ActionResult> CreateUser([FromBody] UserInfo userInfo)
+        public async Task<IActionResult> CreateUser([FromBody] UserInfo userInfo)
         {
             if (string.IsNullOrWhiteSpace(userInfo.Email) ||
                 !userInfo.Email.Contains("@") ||
