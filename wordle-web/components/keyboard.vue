@@ -36,6 +36,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { Letter, LetterStatus } from '~/scripts/letter'
 import { WordleGame } from '~/scripts/wordleGame'
 
+
 @Component
 export default class KeyBoard extends Vue {
   @Prop({ required: true })

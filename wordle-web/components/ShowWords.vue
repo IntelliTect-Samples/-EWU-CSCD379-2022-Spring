@@ -3,12 +3,12 @@
     <v-row justify="center">
       <v-dialog v-model="dialog" scrollable max-width="300px">
         <template #activator="{ on, attrs }">
-          <v-btn :disabled="wordleGame.gameOver" v-bind="attrs" v-on="on">
-            Show Available Words
+          <v-btn :disabled="wordleGame.gameOver" @click="updateCount(),validWords()" v-bind="attrs" v-on="on" >
+            Show Available Words - {{wc.wordsCount}}
           </v-btn>
         </template>
         <v-card>
-          <v-card-title>Available Words</v-card-title>
+          <v-card-title>Available Words - {{wc.wordsCount}}</v-card-title>
           <v-divider></v-divider>
           <v-card-text style="height: 300px">
             <v-radio-group v-model="dialogm1" column>
@@ -36,8 +36,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-// import { Letter, LetterStatus } from '~/scripts/letter'
 import { WordleGame } from '~/scripts/wordleGame'
+import { WordsService } from '~/scripts/wordsService'
 
 @Component({})
 export default class ShowWords extends Vue {
@@ -46,6 +46,17 @@ export default class ShowWords extends Vue {
 
   dialog = false
   availableWordsInput = 'words'
+  regexWord = "?????"
+  items: string[] = []
+  wc = new Vue({
+    data: {
+      wordsCount: 0
+    }
+  })
+
+  updateCount() {
+    this.wc.wordsCount =20
+  }
 
   toggleDialog() {
     this.dialog = !this.dialog
@@ -69,105 +80,10 @@ export default class ShowWords extends Vue {
     this.availableWordsInput = text
   }
 
-  data() {
-    return {
-      items: [
-        'acorn',
-        'acrid',
-        'actor',
-        'adept',
-        'adobe',
-        'adorn',
-        'adult',
-        'agent',
-        'agony',
-        'aisle',
-        'alder',
-        'alien',
-        'alike',
-        'alive',
-        'alone',
-        'aloud',
-        'amber',
-        'ample',
-        'amuck',
-        'angel',
-        'angry',
-        'ankle',
-        'antic',
-        'arise',
-        'aspen',
-        'aspic',
-        'audio',
-        'awful',
-        'azure',
-        'balmy',
-        'bandy',
-        'basic',
-        'basin',
-        'batch',
-        'baton',
-        'bawdy',
-        'beady',
-        'beamy',
-        'beast',
-        'being',
-        'bight',
-        'bigot',
-        'binge',
-        'bingo',
-        'biped',
-        'birch',
-        'birth',
-        'bison',
-        'biter',
-        'blame',
-        'bland',
-        'blank',
-        'bleak',
-        'bleat',
-        'blind',
-        'bloat',
-        'blond',
-        'blunt',
-        'bodge',
-        'bogie',
-        'bogus',
-        'boned',
-        'bonus',
-        'bound',
-        'boxer',
-        'braid',
-        'brand',
-        'brash',
-        'brave',
-        'brawl',
-        'brawn',
-        'brick',
-        'brief',
-        'brisk',
-        'broad',
-        'broke',
-        'brute',
-        'bugle',
-        'built',
-        'bulky',
-        'burly',
-        'bushy',
-        'butch',
-        'cadet',
-        'cadre',
-        'calyx',
-        'camel',
-        'caste',
-        'cedar',
-        'chaos',
-        'chard',
-        'cheap',
-        'chest',
-        'chief',
-      ],
-    }
+  validWords() {
+    this.regexWord = this.wordleGame.currentWord.text
+    this.items = WordsService.availableWords(this.regexWord)
   }
+
 }
 </script>
