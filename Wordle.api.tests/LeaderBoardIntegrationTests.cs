@@ -15,7 +15,7 @@ namespace Wordle.Api.Tests
 {
     [TestClass]
     [TestCategory("Integration")]
-    public class LeaderBoardIntegrationTests: IntegrationTestBase
+    public class LeaderBoardIntegrationTests : IntegrationTestBase
     {
         /// <summary>
         /// test the controller with integration test harness
@@ -28,6 +28,17 @@ namespace Wordle.Api.Tests
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             var content = await response.Content.ReadAsStringAsync();
             Assert.IsTrue(content.Contains("Hildegaard"));
+        }
+
+        /// <summary>
+        /// test the controller with integration test harness
+        /// </summary>
+        [TestMethod]
+        public async Task Post()
+        {
+            var response = await Client.PostAsync("/leaderboard", null);
+
+            Assert.AreEqual(HttpStatusCode.Unauthorized, response.StatusCode);
         }
 
     }

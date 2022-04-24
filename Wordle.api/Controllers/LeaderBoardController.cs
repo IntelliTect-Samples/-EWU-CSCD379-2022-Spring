@@ -25,6 +25,7 @@ namespace Wordle.Api.Controllers
         }
 
         [HttpPost()]
+        [Authorize()]
         public Score SubmitScore(string name, int numberOfAttempts)
         {
             return _leaderBoardService.UpdateScore(name, numberOfAttempts);
