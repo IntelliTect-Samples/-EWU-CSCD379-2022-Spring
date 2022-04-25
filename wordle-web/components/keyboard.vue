@@ -63,6 +63,7 @@ export default class KeyBoard extends Vue {
       this.wordleGame.submitWord()
     }
   }
+  
 
   letterColor(char: string): string {
     if (this.wordleGame.correctChars.includes(char)) {

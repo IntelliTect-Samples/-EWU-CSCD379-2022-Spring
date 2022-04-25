@@ -1,5 +1,7 @@
 <template>
+   
   <div>
+
     <v-btn icon @click="toggleDialog">
       <v-icon> mdi-cog </v-icon>
     </v-btn>
@@ -12,9 +14,9 @@
           <v-card-text>
             <v-menu offset-y>
               <template #activator="{ on, attrs }">
-                <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                  Pick Theme
-                </v-btn>
+                  <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                    Pick Theme
+                  </v-btn>
               </template>
               <v-list>
                 <v-list-item-group>
@@ -41,6 +43,20 @@
                   </v-list-item>
                 </v-list-item-group>
               </v-list>
+              <v-list>
+                <v-list-item-group>
+                  <v-list-item @click="europaTheme">
+                    <v-list-item-title> Europa Theme </v-list-item-title>
+                  </v-list-item>
+                </v-list-item-group>
+              </v-list>
+               <v-list>
+                <v-list-item-group>
+                  <v-list-item @click="vowOfTheDisciple">
+                    <v-list-item-title> Vow Of The Disciple Theme </v-list-item-title>
+                  </v-list-item>
+                </v-list-item-group>
+              </v-list>
             </v-menu>
           </v-card-text>
         </v-container>
@@ -57,6 +73,7 @@ import { colors } from 'vuetify/lib'
 export default class SettingsDialog extends Vue {
   dialog = false
 
+
   toggleDialog() {
     this.dialog = !this.dialog
   }
@@ -66,7 +83,7 @@ export default class SettingsDialog extends Vue {
   }
 
   turnOffTheLights() {
-    // Implement Me
+    this.$vuetify.theme.dark = true
   }
 
   purpleTheme() {
@@ -82,6 +99,39 @@ export default class SettingsDialog extends Vue {
 
     this.$vuetify.theme.themes.dark = purpleTheme
     this.$vuetify.theme.themes.light = purpleTheme
+  }
+
+  europaTheme(){
+    const europaTheme = {
+      primary: colors.lightBlue,
+      accent: colors.indigo.accent3,
+      secondary: colors.blue,
+      info: '#03A9F4',
+      warning: colors.blue.accent1,
+      error: colors.blueGrey,
+      success: colors.green.lighten4,
+      background:colors.indigo.lighten5,
+    }
+
+    this.$vuetify.theme.themes.dark = europaTheme
+    this.$vuetify.theme.themes.light = europaTheme
+  }
+  
+   vowOfTheDisciple(){
+    const vowOfTheEurope = {
+      primary: colors.red,
+      accent: colors.red.accent3,
+      secondary: colors.red,
+      info: '#03A9F4',
+      warning: colors.orange.darken4,
+      error: colors.red,
+      success: colors.green,
+      background:colors.red.lighten5,
+      gradient:colors.blue,
+    }
+
+    this.$vuetify.theme.themes.dark = vowOfTheEurope
+    this.$vuetify.theme.themes.light = vowOfTheEurope
   }
 }
 </script>
