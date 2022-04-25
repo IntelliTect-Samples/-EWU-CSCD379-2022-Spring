@@ -16,7 +16,7 @@ export class WordleGame {
 
   private word: string
   words: Word[] = []
-  hints: string[][]=[[],[],[],[],[],[]]
+  hints: string[][]=[]
   displayHints: boolean[]=[false,false,false,false,false,false];
   state: GameState = GameState.Active
   readonly maxGuesses = 6
@@ -50,7 +50,9 @@ export class WordleGame {
       .filter((x) => x.status === LetterStatus.Wrong)
       .map((x) => x.char)
   }
-
+  public setCurrentWord(to :string){
+    this.currentWord.setWord(to);
+  }
   submitWord() {
     if (this.currentWord.evaluateWord(this.word)) {
       this.state = GameState.Won
