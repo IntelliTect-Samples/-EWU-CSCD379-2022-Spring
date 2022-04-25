@@ -6,7 +6,7 @@ The purpose of this assignment is to solidify your learning of:
 - Front end component development
 - Using Vuetify's components
 - Building a new custom component
-- Creating new pages
+- Creating new pages 
 
 ## Instructions
 Note: Custom CSS can only be used where specified.
