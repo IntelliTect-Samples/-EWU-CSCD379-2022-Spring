@@ -1,13 +1,7 @@
 <template>
   <v-card
     width="450"
-    style="
-      background: radial-gradient(
-        circle,
-        rgba(186, 186, 186, 1) 0%,
-        rgba(55, 55, 55, 1) 100%
-      );
-    "
+    style="background: radial-gradient(circle, rgba(186,186,186,1) 0%, rgba(55,55,55,1) 100%)"
   >
     <v-container>
       <v-row v-for="row in wordleGame.maxGuesses" :key="row" dense>
