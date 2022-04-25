@@ -34,9 +34,9 @@ namespace Wordle.Api.Tests
         /// test the controller with integration test harness
         /// </summary>
         [TestMethod]
-        public async Task Post()
+        public async Task SubmitScore()
         {
-            var response = await Client.PostAsync("/leaderboard", null);
+            var response = await Client.PostAsync("/leaderboard/SubmitScore", new JsonContent(new { Name = "Bubba", NumberOfAttempts = 3 }));
 
             Assert.AreEqual(HttpStatusCode.Unauthorized, response.StatusCode);
         }
