@@ -1,5 +1,5 @@
 <template>
-  <v-card class="my-5 pa-5">
+  <v-card class="my-5 pa-5" style="background: radial-gradient(circle, rgba(186,186,186,1) 0%, rgba(55,55,55,1) 100%);">
     <v-row v-for="(charRow, i) in chars" :key="i" no-gutters justify="center">
       <v-col v-for="char in charRow" :key="char" cols="1">
         <v-container class="text-center">
@@ -7,6 +7,7 @@
             :color="letterColor(char)"
             :disabled="wordleGame.gameOver"
             @click="setLetter(char)"
+            elevation=24
           >
             {{ char }}
           </v-btn>
@@ -20,7 +21,7 @@
         </v-btn>
       </v-col>
       <v-col class="d-flex justify-center">
-        <ShowWords :wordleGame="wordleGame" />
+        <ShowWords :wordleGame="wordleGame" :count="watchNumber"/>
       </v-col>
       <v-col class="d-flex justify-end">
         <v-btn :disabled="wordleGame.gameOver" icon @click="removeLetter">
@@ -32,15 +33,40 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { Letter, LetterStatus } from '~/scripts/letter'
 import { WordleGame } from '~/scripts/wordleGame'
-
+import { useSound } from '@vueuse/sound'
+import { WordsService } from '~/scripts/wordsService'
+import ShowWords from './ShowWords.vue'
 
 @Component
 export default class KeyBoard extends Vue {
   @Prop({ required: true })
   wordleGame!: WordleGame
+  showWords!: ShowWords
+
+  watchProperty: boolean = true
+  watchNumber: number = 0
+  //buttonSound = useSound('~/assets/button.mp3')
+
+  playSound(){
+    //this doesnt work
+    //this.buttonSound.play()
+  }
+
+  @Watch('watchProperty')
+  onPropertyChanged(value: boolean, oldValue: boolean) {
+    console.log("Triggered My Property :)")
+    //play the button clicked sound here
+    this.playSound()
+    this.watchNumber = WordsService.availableWords(this.wordleGame.currentWord.text).length
+    
+  }
+
+  update(){
+    this.watchProperty = !this.watchProperty
+  }
 
   chars = [
     ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
@@ -50,10 +76,12 @@ export default class KeyBoard extends Vue {
 
   setLetter(char: string) {
     this.wordleGame.currentWord.addLetter(char)
+    this.update()
   }
 
   removeLetter() {
     this.wordleGame.currentWord.removeLetter()
+    this.update()
   }
 
   guessWord() {

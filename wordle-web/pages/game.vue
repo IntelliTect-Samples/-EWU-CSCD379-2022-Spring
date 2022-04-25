@@ -13,7 +13,7 @@
       Wordle!
     </v-card-text>
 
-    <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
+    <v-alert v-if="wordleGame.gameOver" max-width="80%" :type="gameResult.type">
       {{ gameResult.text }}
       <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
     </v-alert>

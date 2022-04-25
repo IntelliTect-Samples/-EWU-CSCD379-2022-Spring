@@ -3,15 +3,20 @@
     <v-row justify="center">
       <v-dialog v-model="dialog" scrollable max-width="300px">
         <template #activator="{ on, attrs }">
-          <v-btn :disabled="wordleGame.gameOver" @click="updateCount(),validWords()" v-bind="attrs" v-on="on" >
-            Show Available Words - {{wc.wordsCount}}
+          <v-btn
+            :disabled="wordleGame.gameOver"
+            v-bind="attrs"
+            @click="validWords()"
+            v-on="on"
+          >
+            Show Available Words - {{ count }}
           </v-btn>
         </template>
         <v-card>
-          <v-card-title>Available Words - {{wc.wordsCount}}</v-card-title>
+          <v-card-title>Available Words - {{ count }}</v-card-title>
           <v-divider></v-divider>
           <v-card-text style="height: 300px">
-            <v-radio-group v-model="dialogm1" column>
+            <v-radio-group v-model="dialog" column>
               <div v-for="item in items" :key="item">
                 <v-radio
                   :label="item"
@@ -43,20 +48,14 @@ import { WordsService } from '~/scripts/wordsService'
 export default class ShowWords extends Vue {
   @Prop({ required: true })
   wordleGame!: WordleGame
+  
+  @Prop({ required: true })
+  readonly count!: number
 
   dialog = false
   availableWordsInput = 'words'
-  regexWord = "?????"
+  regexWord = '?????'
   items: string[] = []
-  wc = new Vue({
-    data: {
-      wordsCount: 0
-    }
-  })
-
-  updateCount() {
-    this.wc.wordsCount =20
-  }
 
   toggleDialog() {
     this.dialog = !this.dialog
@@ -84,6 +83,5 @@ export default class ShowWords extends Vue {
     this.regexWord = this.wordleGame.currentWord.text
     this.items = WordsService.availableWords(this.regexWord)
   }
-
 }
 </script>

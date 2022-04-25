@@ -4,15 +4,15 @@ export abstract class WordsService {
   }
 
   static availableWords(word: string): string[] {
-    while(word.includes('?')){
+    while (word.includes('?')) {
       word = word.replace('?', '.')
     }
-    var regex = RegExp('^'+ word +'$')
-    
-    var matchingWords = this.#words.filter(item => {
-      if(item.match(regex)){
+    const regex = RegExp('^' + word + '$')
+
+    const matchingWords = this.#words.filter((item) => {
+      if (item.match(regex)) {
         return item
-      } 
+      }
     })
 
     return matchingWords
