@@ -18,28 +18,26 @@
 
     <v-navigation-drawer v-model="drawer" absolute temporary right height="150">
       <v-list nav dense>
-        
-          <v-list-item nuxt to="/">
-            <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Home</v-list-item-title>
-          </v-list-item>
+        <v-list-item nuxt to="/">
+          <v-list-item-icon>
+            <v-icon>mdi-home</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Home</v-list-item-title>
+        </v-list-item>
 
-          <v-list-item nuxt to="/game">
-            <v-list-item-icon>
-              <v-icon>mdi-controller-classic</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Game</v-list-item-title>
-          </v-list-item>
+        <v-list-item nuxt to="/game">
+          <v-list-item-icon>
+            <v-icon>mdi-controller-classic</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Game</v-list-item-title>
+        </v-list-item>
 
-          <v-list-item nuxt to="/about">
-            <v-list-item-icon>
-              <v-icon>mdi-information-outline</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>About</v-list-item-title>
-          </v-list-item>
-        
+        <v-list-item nuxt to="/about">
+          <v-list-item-icon>
+            <v-icon>mdi-information-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>About</v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
   </v-app>

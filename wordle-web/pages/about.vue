@@ -20,17 +20,27 @@
             >
             <v-expansion-panel-content class="mt-5">
               <h3>CSCD 379 .NET WEB APPLICATION DEVELOPMENT.</h3>
-              <h4>4 Credits</h4><br>
-              <p><h4>Pre-requisites:</h4>CSCD 327 with a grade ≥C+. (DESN 368 or XHTML/HTML knowledge (highly recommended) or permission of the instructor.)
-                This course examines the fundamental principles and techniques associated with the development of multi-tier web applications, using the .NET Framework. 
-                Topics include web standards, portability, and usability. Programming projects are required.
+              <h4>4 Credits</h4>
+              <br />
+              <p></p>
+              <h4>Pre-requisites:</h4>
+              CSCD 327 with a grade ≥C+. (DESN 368 or XHTML/HTML knowledge
+              (highly recommended) or permission of the instructor.) This course
+              examines the fundamental principles and techniques associated with
+              the development of multi-tier web applications, using the .NET
+              Framework. Topics include web standards, portability, and
+              usability. Programming projects are required.
             </v-expansion-panel-content>
           </v-expansion-panel>
           <v-expansion-panel>
-            <v-expansion-panel-header color="primary">Meg!</v-expansion-panel-header>
+            <v-expansion-panel-header color="primary"
+              >Meg!</v-expansion-panel-header
+            >
             <v-expansion-panel-content class="mt-5">
               Check out her website
-              <v-btn href="https://www.meghanwoodford.com/" color="primary">here</v-btn>
+              <v-btn href="https://www.meghanwoodford.com/" color="primary"
+                >here</v-btn
+              >
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>

@@ -48,7 +48,7 @@ import { WordsService } from '~/scripts/wordsService'
 export default class ShowWords extends Vue {
   @Prop({ required: true })
   wordleGame!: WordleGame
-  
+
   @Prop({ required: true })
   readonly count!: number
 
