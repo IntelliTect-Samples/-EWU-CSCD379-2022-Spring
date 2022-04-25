@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net;
 using System.Security.Claims;
 using System.Text;
 using Wordle.Api.Data;
@@ -15,15 +14,15 @@ namespace Wordle.Api.Controllers
     public class TokenController : ControllerBase
     {
         private JwtConfiguration _jwtConfiguration;
-        private UserManager<AppUser> _authenticationHandler;
+        private UserManager<AppUser> _userManager;
         private AppDbContext _db;
 
         public TokenController(JwtConfiguration jwtConfiguration,
-            UserManager<AppUser> authenticationHandler,
+            UserManager<AppUser> userManager,
             AppDbContext db)
         {
             _jwtConfiguration = jwtConfiguration;
-            _authenticationHandler = authenticationHandler;
+            _userManager = userManager;
             _db = db;
         }
 
@@ -43,23 +42,31 @@ namespace Wordle.Api.Controllers
                 return NotFound();
             }
 
-            var result = await _authenticationHandler.CheckPasswordAsync(user, userInfo.Password);
+            var result = await _userManager.CheckPasswordAsync(user, userInfo.Password);
+            
             if (result)
             {
                 var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtConfiguration.Secret!));
                 var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
                 //Create a List of Claims, Keep claims name short    
-                var permClaims = new List<Claim>();
-                permClaims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
-                permClaims.Add(new Claim("valid", "1"));
-                permClaims.Add(new Claim("userid", user.Id));
-                permClaims.Add(new Claim("username", user.UserName));
+                var claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.Name, user.UserName));
+                claims.Add(new Claim(ClaimTypes.Email, user.Email));
+                claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
+                claims.Add(new Claim("valid", "1"));
+                claims.Add(new Claim("userid", user.Id));
+
+                var userRoles = await _userManager.GetRolesAsync(user);
+                foreach (var userRole in userRoles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, userRole));
+                }
 
                 //Create Security Token object by giving required parameters    
                 var token = new JwtSecurityToken(_jwtConfiguration.Issuer, //Issure    
-                                _jwtConfiguration.Issuer,  //Audience    
-                                permClaims,
+                                _jwtConfiguration.Audience,  //Audience    
+                                claims,
                                 expires: DateTime.Now.AddDays(1),
                                 signingCredentials: credentials);
                 var jwt_token = new JwtSecurityTokenHandler().WriteToken(token);
@@ -98,7 +105,7 @@ namespace Wordle.Api.Controllers
                 Email = userInfo.Email,
                 NormalizedEmail = userInfo.NormalizedEmail,
             };
-            var result = await _authenticationHandler.CreateAsync(user, userInfo.Password);
+            var result = await _userManager.CreateAsync(user, userInfo.Password);
             if (result.Succeeded)
             {
                 return Ok(new { data = result });
