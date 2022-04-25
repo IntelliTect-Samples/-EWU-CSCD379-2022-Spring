@@ -6,7 +6,6 @@ export abstract class WordsService {
   static validWords(given: string): string[] {
     
     const searchphrase: string = given.split('?').join(".")
-    console.log(searchphrase)
 
     let validWords: string[] = [];
 

@@ -1,9 +1,12 @@
 <template>
-  <v-card class="my-5 pa-5">
-    <v-row v-for="(charRow, i) in chars" :key="i" no-gutters justify="center">
-      <v-col v-for="char in charRow" :key="char" cols="1">
-        <v-container class="text-center">
+  <v-card elevation = "0" width="650" class = "my-6" style ="background: linear-gradient(180deg, rgba(100,100,100,1) 0%, rgba(62,62,62,0.3) 70%, rgba(0,0,0,0.0) 100%)">
+    <v-row  v-for="(charRow, i) in chars" :key="i" justify="center" dense no-gutters>
+      <v-col v-for="char in charRow" :key="char" cols="1" dense no-gutters>
+        <v-container class="text-center mx-0 px-1 py-1 my-0">
           <v-btn
+            class = "py-8 mx-0 px-0"
+            min-width="45"
+            elevation="10"
             :color="letterColor(char)"
             :disabled="wordleGame.gameOver"
             @click="setLetter(char)"
@@ -13,6 +16,8 @@
         </v-container>
       </v-col>
     </v-row>
+    <v-spacer>
+    </v-spacer>
     <v-btn
       :disabled="wordleGame.gameOver"
       class="float-left"
@@ -28,6 +33,8 @@
     >
       <v-icon>mdi-backspace</v-icon>
     </v-btn>
+    <v-spacer>
+    </v-spacer>
   </v-card>
 </template>
 

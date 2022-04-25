@@ -1,26 +1,30 @@
 <template>
   <v-container fluid fill-height justify-center>
-    <v-tooltip bottom>
+    <!-- <v-tooltip bottom>
       <template #activator="{ on, attrs }">
         <v-btn color="primary" nuxt to="/" fab v-bind="attrs" v-on="on">
           <v-icon> mdi-home </v-icon>
         </v-btn>
       </template>
       <span> Go Home </span>
-    </v-tooltip>
+    </v-tooltip> -->
 
-    <v-card-text class="text-h1 font-weight-black text-center">
+    <!-- <v-card-text class="text-h1 font-weight-black text-center">
       Wordle!
-    </v-card-text>
+    </v-card-text> -->
 
     <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
       {{ gameResult.text }}
       <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
     </v-alert>
-
+    <v-col>
+      <v-row justify="center">
     <gameboard :wordleGame="wordleGame" />
-
+      </v-row >
+      <v-row justify="center">
     <keyboard :wordleGame="wordleGame" />
+      </v-row>
+    </v-col>
   </v-container>
 </template>
 
