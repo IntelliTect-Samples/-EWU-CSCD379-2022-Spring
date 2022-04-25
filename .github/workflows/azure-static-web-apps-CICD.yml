@@ -25,12 +25,23 @@ jobs:
         name: Node Setup
         with:
           node-version: "14"
+          
       - run: npm i
         name: Run NPM install
         working-directory: ./wordle-web
+      
+      - name: Replace API URL
+        uses: jacobtomlinson/gha-find-replace@v2
+        with: 
+          find: "process.env.API_URL"
+          replace: "'${{ secrets.API_URL }}'"
+          include: "**/nuxt.config.js"
+          regex: false
+      
       - run: npm run test
         name: Run npm tests
         working-directory: ./wordle-web
+      
       - run: npm run generate
         name: Generate nuxt app
         working-directory: ./wordle-web
