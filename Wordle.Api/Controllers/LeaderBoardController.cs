@@ -24,11 +24,17 @@ namespace Wordle.Api.Controllers
             return _leaderBoardService.GetHighScores();
         }
 
-        [HttpPost()]
+        [HttpPost("SubmitScore")]
         [Authorize()]
-        public Score SubmitScore(string name, int numberOfAttempts)
+        public Score SubmitScore([FromBody] NewScore newScore)
         {
-            return _leaderBoardService.UpdateScore(name, numberOfAttempts);
+            return _leaderBoardService.UpdateScore(newScore.Name, newScore.NumberOfAttempts);
+        }
+
+        public class NewScore
+        {
+            public string Name { get; set; } = "";
+            public int NumberOfAttempts { get; set; } = 0;
         }
     }
 }

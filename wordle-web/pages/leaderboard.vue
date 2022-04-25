@@ -32,7 +32,21 @@
           <v-btn color="secondary" :loading="isLoading" @click="getToken">
             Get Token
           </v-btn>
-          <v-btn color="secondary" :loading="isLoading" @click="addScore">
+        </v-card-actions>
+      </v-card>
+      <v-card>
+        <v-card-title>Add Score</v-card-title>
+        <v-card-text>
+          <v-text-field v-model="name" label="Name"></v-text-field>
+          <v-text-field v-model="score" label="Score"></v-text-field>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn
+            color="primary"
+            :loading="isLoading"
+            :disabled="token == ''"
+            @click="addScore"
+          >
             Add Score
           </v-btn>
         </v-card-actions>
@@ -53,6 +67,12 @@ export default class IndexPage extends Vue {
   isLoading: boolean = false
   scores: Score[] = []
   token: string = ''
+  name: string = 'Bubba'
+  score: number = 3
+
+  created() {
+    this.refresh()
+  }
 
   config() {
     return {
@@ -68,8 +88,16 @@ export default class IndexPage extends Vue {
 
   addScore() {
     this.$axios
-      .post('/leaderboard?name=Bubba&numberOfAttempts=3', null, this.config())
-      .then(() => {
+      .post(
+        '/leaderboard/submitscore',
+        {
+          name: this.name,
+          numberOfAttempts: this.score,
+        },
+        this.config()
+      )
+      .then((response: AxiosResponse) => {
+        console.log(`Added a Score: ${JSON.stringify(response.data)}`)
         this.refresh()
       })
   }
@@ -82,6 +110,7 @@ export default class IndexPage extends Vue {
       })
       .then((response: AxiosResponse) => {
         this.token = response.data.token
+        console.log(`Got a Token: ${this.token}`)
       })
   }
 
