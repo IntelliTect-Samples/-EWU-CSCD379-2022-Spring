@@ -13,8 +13,20 @@ namespace Wordle.Api
     {
         static void Main(string[] args)
         {
+            var allOrigins = "AllOrigins";
 
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: allOrigins,
+                    policy => policy
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                    );
+            });
+
             var jwtConfiguration = builder.Configuration.GetSection("Jwt").Get<JwtConfiguration>();
             builder.Services.AddSingleton(jwtConfiguration);
 
@@ -84,9 +96,9 @@ namespace Wordle.Api
                 }
                 });
             });
-            
+
             builder.Services.AddScoped<ILeaderBoardService, LeaderBoardService>();
-            
+
             var app = builder.Build();
 
             // Run Migrations on the datbase automatically on startup
@@ -104,6 +116,8 @@ namespace Wordle.Api
             //}
 
             app.UseHttpsRedirection();
+
+            app.UseCors(allOrigins);
 
             app.UseAuthentication();
             app.UseAuthorization();

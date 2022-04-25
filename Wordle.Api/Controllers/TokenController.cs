@@ -63,7 +63,7 @@ namespace Wordle.Api.Controllers
                                 expires: DateTime.Now.AddDays(1),
                                 signingCredentials: credentials);
                 var jwt_token = new JwtSecurityTokenHandler().WriteToken(token);
-                return Ok(new { data = jwt_token });
+                return Ok(new { token = jwt_token });
             }
             else
             {
