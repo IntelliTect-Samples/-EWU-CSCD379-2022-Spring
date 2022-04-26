@@ -26,9 +26,15 @@ namespace Wordle.Api.Controllers
 
         [HttpPost("SubmitScore")]
         [Authorize()]
-        public Score SubmitScore([FromBody] NewScore newScore)
+        public ActionResult<Score> SubmitScore([FromBody] NewScore newScore)
         {
-            return _leaderBoardService.UpdateScore(newScore.Name, newScore.NumberOfAttempts);
+            try
+            {
+                return Ok(_leaderBoardService.UpdateScore(newScore.Name, newScore.NumberOfAttempts));
+            }catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         public class NewScore

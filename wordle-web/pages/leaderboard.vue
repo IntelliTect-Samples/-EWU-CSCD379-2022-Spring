@@ -100,6 +100,9 @@ export default class IndexPage extends Vue {
         console.log(`Added a Score: ${JSON.stringify(response.data)}`)
         this.refresh()
       })
+      .catch((error) => {
+        console.log(JSON.stringify(error))
+      })
   }
 
   getToken() {
@@ -112,14 +115,21 @@ export default class IndexPage extends Vue {
         this.token = response.data.token
         console.log(`Got a Token: ${this.token}`)
       })
+      .catch((error) => {
+        console.log(JSON.stringify(error))
+      })
   }
 
   createUser() {
-    this.$axios.post('/token/CreateUser', {
-      email: 'test@test.com',
-      userName: 'test@test.com',
-      password: 'Password#1',
-    })
+    this.$axios
+      .post('/token/CreateUser', {
+        email: 'test@test.com',
+        userName: 'Test',
+        password: 'Password#1',
+      })
+      .catch((error) => {
+        console.log(JSON.stringify(error))
+      })
   }
 }
 </script>
