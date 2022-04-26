@@ -22,14 +22,14 @@ jobs:
         name: Node Setup
         with:
           node-version: "14"
-      - run: npm
+      - run: npm i
         name: Run NPM install
         working-directory: ./wordle-web
       - run: npm run test
         name: Run npm tests
         working-directory: ./wordle-web
-      - run: nom run generate
-        name: npm run generate
+      - run: npm run generate
+        name: Generate Nuxt app
         working-directory: ./wordle-web
       - name: Build And Deploy
         id: builddeploy
