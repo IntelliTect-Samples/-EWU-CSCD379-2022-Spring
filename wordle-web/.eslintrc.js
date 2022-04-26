@@ -11,7 +11,5 @@ module.exports = {
   ],
   plugins: [],
   // add your custom rules here
-  rules: {
-    'vue/attribute-hyphenation': 'off',
-  },
+  rules: {},
 }
