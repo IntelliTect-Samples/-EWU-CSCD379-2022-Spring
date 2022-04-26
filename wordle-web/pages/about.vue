@@ -37,7 +37,7 @@
               >Meg!</v-expansion-panel-header
             >
             <v-expansion-panel-content class="mt-5">
-              Check out her website
+              Check out her website!
               <v-btn href="https://www.meghanwoodford.com/" color="primary"
                 >here</v-btn
               >
