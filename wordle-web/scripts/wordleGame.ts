@@ -1,5 +1,6 @@
 import { LetterStatus } from './letter'
 import { Word } from './word'
+import {WordsService} from './wordsService'
 
 export enum GameState {
   Active = 0,
@@ -15,6 +16,8 @@ export class WordleGame {
 
   private word: string
   words: Word[] = []
+  hints: string[][]=[]
+  displayHints: boolean[]=[false,false,false,false,false,false];
   state: GameState = GameState.Active
   readonly maxGuesses = 6
 
@@ -47,13 +50,19 @@ export class WordleGame {
       .filter((x) => x.status === LetterStatus.Wrong)
       .map((x) => x.char)
   }
-
+  public setCurrentWord(to :string){
+    this.currentWord.setWord(to);
+  }
   submitWord() {
     if (this.currentWord.evaluateWord(this.word)) {
       this.state = GameState.Won
     } else if (this.words.length === this.maxGuesses) {
       this.state = GameState.Lost
     } else {
+      if (this.currentWord.text.includes("?")){
+        this.displayHints[this.words.length] = true
+      }
+      this.hints[this.words.length] = WordsService.validWords(this.currentWord.text)
       this.words.push(new Word())
     }
   }

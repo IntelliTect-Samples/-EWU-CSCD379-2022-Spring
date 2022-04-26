@@ -20,6 +20,22 @@ export class Word {
     }
   }
 
+  clearWord(){
+    while(this.letters.length >0)
+      this.removeLetter();
+    }
+  
+
+  setWord(to :string){
+    if(to.length > this.maxLetters) return
+
+    this.clearWord();
+
+    for (let j= 0; j < to.length; j++){
+       this.addLetter(to.charAt(j));
+    }
+  }
+
   evaluateWord(word: string): boolean {
     let result = true
 
