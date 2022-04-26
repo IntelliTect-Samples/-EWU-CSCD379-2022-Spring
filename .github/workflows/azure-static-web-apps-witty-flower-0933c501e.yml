@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: "14"
       - run: npm
-        name: Run NOM install
+        name: Run NPM install
         working-directory: ./wordle-web
       - run: npm run test
         name: Run npm tests
