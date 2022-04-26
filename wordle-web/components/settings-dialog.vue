@@ -17,7 +17,7 @@
           <v-card-text>
             <v-menu offset-y>
               <template #activator="{ on, attrs }">
-                <v-btn color="primary" dark v-bind="attrs" v-on="on" nuxt to="/about" >
+                <v-btn color="primary" dark v-bind="attrs" v-on="on" nuxt to="/about">
                   About
                 </v-btn>
               </template>
@@ -108,6 +108,7 @@ export default class SettingsDialog extends Vue {
 
   turnOffTheLights() {
     // Implement Me
+    this.$vuetify.theme.dark = true
   }
 
   purpleTheme() {
