@@ -44,10 +44,11 @@ export default class Game extends Vue {
 
   get gameResult() {
     if (this.wordleGame.state === GameState.Won) {
+      //make confetti like canvas
       return { type: 'success', text: 'Yay! You won!' }
     }
     if (this.wordleGame.state === GameState.Lost) {
-      return { type: 'error', text: `You lost... :( The word was ${this.word}` }
+      return { type: 'error', text: 'You lost... :( The word was ${this.word}' }
     }
     return { type: '', text: '' }
   }

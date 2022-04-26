@@ -7,6 +7,9 @@ export abstract class WordsService {
     while (word.includes('?')) {
       word = word.replace('?', '.')
     }
+    while(word.length<5){
+      word = word + '.'
+    }
     const regex = RegExp('^' + word + '$')
 
     const matchingWords = this.#words.filter((item) => {

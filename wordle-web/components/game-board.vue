@@ -1,4 +1,5 @@
 <template>
+  <!-- lintfix splits the "style" into multiple lines which breaks it  -->
   <v-card
     width="450"
     style="background: radial-gradient(circle, rgba(186,186,186,1) 0%, rgba(55,55,55,1) 100%)"

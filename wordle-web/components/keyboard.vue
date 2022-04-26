@@ -1,4 +1,5 @@
 <template>
+<!-- lintfix splits the "style" into multiple lines which breaks it  -->
   <v-card
     class="my-5 pa-5"
     style="background: radial-gradient(circle, rgba(186,186,186,1) 0%, rgba(55,55,55,1) 100%)"
@@ -62,7 +63,7 @@ export default class KeyBoard extends Vue {
   @Watch('watchProperty')
   onPropertyChanged() {
     // play the button clicked sound here
-    this.playSound()
+    // this.playSound()
     this.watchNumber = WordsService.availableWords(
       this.wordleGame.currentWord.text
     ).length
@@ -95,6 +96,7 @@ export default class KeyBoard extends Vue {
     ) {
       this.wordleGame.submitWord()
     }
+    this.update()
   }
 
   letterColor(char: string): string {
