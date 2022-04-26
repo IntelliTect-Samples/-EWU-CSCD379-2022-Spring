@@ -52,7 +52,7 @@ export default class KeyBoard extends Vue {
   showWords!: ShowWords
 
   watchProperty: boolean = true
-  watchNumber: number = 0
+  watchNumber: number = 631
   // buttonSound = useSound('~/assets/button.mp3')
 
   playSound() {
