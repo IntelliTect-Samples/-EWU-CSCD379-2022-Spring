@@ -92,7 +92,7 @@ namespace Wordle.Api
                             Id = "Bearer"
                         }
                     },
-                    new string[] { }
+                    Array.Empty<string>()
                 }
                 });
             });
@@ -104,8 +104,10 @@ namespace Wordle.Api
             // Run Migrations on the datbase automatically on startup
             using (var scope = app.Services.CreateScope())
             {
-                var dataContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                dataContext.Database.Migrate();
+                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                db.Database.Migrate();
+                // Seed Data
+                StatisticsService.Seed(db);
             }
 
             // Configure the HTTP request pipeline.

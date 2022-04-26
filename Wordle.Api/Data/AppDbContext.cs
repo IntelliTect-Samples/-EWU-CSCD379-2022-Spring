@@ -9,5 +9,7 @@ namespace Wordle.Api.Data
             : base(options) { }
 
         public AppDbContext() : base() { }
+
+        public DbSet<ScoreStat> ScoreStats { get; set; } = null!;
     }
 }

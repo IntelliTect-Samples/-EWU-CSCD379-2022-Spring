@@ -4,7 +4,7 @@
     {
         private readonly ILogger<LeaderBoardService> _logger;
 
-        private static IEnumerable<Score> _highScores = new List<Score> {
+        private readonly static IEnumerable<Score> _highScores = new List<Score> {
             new Score("Bubba", 3.4, 10),
             new Score("Hildegaard", 2.5, 8),
             new Score("Brunhilde", 4.2, 20)

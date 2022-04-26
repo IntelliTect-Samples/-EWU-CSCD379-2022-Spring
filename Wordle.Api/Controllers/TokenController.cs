@@ -13,9 +13,9 @@ namespace Wordle.Api.Controllers
     [ApiController]
     public class TokenController : ControllerBase
     {
-        private JwtConfiguration _jwtConfiguration;
-        private UserManager<AppUser> _userManager;
-        private AppDbContext _db;
+        private readonly JwtConfiguration _jwtConfiguration;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly AppDbContext _db;
 
         public TokenController(JwtConfiguration jwtConfiguration,
             UserManager<AppUser> userManager,
@@ -30,7 +30,7 @@ namespace Wordle.Api.Controllers
         public async Task<IActionResult> GetToken([FromBody] UserLoginInfo userInfo)
         {
             if (string.IsNullOrWhiteSpace(userInfo.Email) ||
-                !userInfo.Email.Contains("@") ||
+                !userInfo.Email.Contains('@') ||
                 string.IsNullOrWhiteSpace(userInfo.Password))
             {
                 return BadRequest();
@@ -50,12 +50,14 @@ namespace Wordle.Api.Controllers
                 var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
                 //Create a List of Claims, Keep claims name short    
-                var claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.Name, user.UserName));
-                claims.Add(new Claim(ClaimTypes.Email, user.Email));
-                claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
-                claims.Add(new Claim("valid", "1"));
-                claims.Add(new Claim("userid", user.Id));
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim("valid", "1"),
+                    new Claim("userid", user.Id)
+                };
 
                 var userRoles = await _userManager.GetRolesAsync(user);
                 foreach (var userRole in userRoles)
@@ -82,7 +84,7 @@ namespace Wordle.Api.Controllers
         public async Task<IActionResult> CreateUser([FromBody] UserInfo userInfo)
         {
             if (string.IsNullOrWhiteSpace(userInfo.Email) ||
-                !userInfo.Email.Contains("@") ||
+                !userInfo.Email.Contains('@') ||
                 string.IsNullOrWhiteSpace(userInfo.Password) ||
                 string.IsNullOrWhiteSpace(userInfo.UserName))
             {
