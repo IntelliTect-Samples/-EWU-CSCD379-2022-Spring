@@ -1,83 +1,114 @@
 <template>
-   
-  <div>
+    <div>      
+        <v-btn
+          icon @click ="toggleMenu">
+          <v-icon> mdi-hamburger</v-icon>
+        </v-btn>
 
-    <v-btn icon @click="toggleDialog">
-      <v-icon> mdi-cog </v-icon>
-    </v-btn>
+        <v-btn 
+          icon @click="toggleDialog">
+          <v-icon> mdi-cog </v-icon>
+        </v-btn>
 
-    <v-dialog v-model="dialog" width="450">
-      <v-card>
-        <v-container>
-          <v-card-title> Settings </v-card-title>
+         <v-dialog v-model="menu" width="450">
+          <v-card>
+            <v-container>
+              <v-card-title> Menu </v-card-title>
+              <v-card-text>
+                <v-menu offset-y>
+                  <template #activator="{ on, attrs }">
+                      <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                        <v-card-actions> 
+                          <v-spacer/>
+                            <v-btn color="primary" nuxt to="/about"> About Page </v-btn>
+                          </v-card-actions>
+                      </v-btn>
+                  </template>
+                </v-menu>
+              </v-card-text>
+            </v-container>
+          </v-card>
+        </v-dialog>
+          
 
-          <v-card-text>
-            <v-menu offset-y>
-              <template #activator="{ on, attrs }">
-                  <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                    Pick Theme
-                  </v-btn>
-              </template>
-              <v-list>
-                <v-list-item-group>
-                  <v-list-item @click="turnOnTheLights">
-                    <v-list-item-title> Light Mode </v-list-item-title>
-                  </v-list-item>
-                  <v-list-item @click="turnOffTheLights">
-                    <v-list-item-title> Dark Mode </v-list-item-title>
-                  </v-list-item>
-                </v-list-item-group>
-              </v-list>
-            </v-menu>
+        <v-dialog v-model="dialog" width="450">
+          <v-card>
+            <v-container>
+              <v-card-title> Settings </v-card-title>
 
-            <v-menu offset-y>
-              <template #activator="{ on, attrs }">
-                <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                  Pick A Color
-                </v-btn>
-              </template>
-              <v-list>
-                <v-list-item-group>
-                  <v-list-item @click="purpleTheme">
-                    <v-list-item-title> Purple </v-list-item-title>
-                  </v-list-item>
-                </v-list-item-group>
-              </v-list>
-              <v-list>
-                <v-list-item-group>
-                  <v-list-item @click="europaTheme">
-                    <v-list-item-title> Europa Theme </v-list-item-title>
-                  </v-list-item>
-                </v-list-item-group>
-              </v-list>
-               <v-list>
-                <v-list-item-group>
-                  <v-list-item @click="vowOfTheDisciple">
-                    <v-list-item-title> Vow Of The Disciple Theme </v-list-item-title>
-                  </v-list-item>
-                </v-list-item-group>
-              </v-list>
-            </v-menu>
-          </v-card-text>
-        </v-container>
-      </v-card>
-    </v-dialog>
+              <v-card-text>
+                <v-menu offset-y>
+                  <template #activator="{ on, attrs }">
+                      <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                        Pick Theme
+                      </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item-group>
+                      <v-list-item @click="turnOnTheLights">
+                        <v-list-item-title> Light Mode </v-list-item-title>
+                      </v-list-item>
+                      <v-list-item @click="turnOffTheLights">
+                        <v-list-item-title> Dark Mode </v-list-item-title>
+                      </v-list-item>
+                    </v-list-item-group>
+                  </v-list>
+                </v-menu>
+
+                <v-menu offset-y>
+                  <template #activator="{ on, attrs }">
+                    <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                      Pick A Color
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item-group>
+                      <v-list-item @click="purpleTheme">
+                        <v-list-item-title> Purple </v-list-item-title>
+                      </v-list-item>
+                    </v-list-item-group>
+                  </v-list>
+                  <v-list>
+                    <v-list-item-group>
+                      <v-list-item @click="europaTheme">
+                        <v-list-item-title> Europa Theme </v-list-item-title>
+                      </v-list-item>
+                    </v-list-item-group>
+                  </v-list>
+                  <v-list>
+                    <v-list-item-group>
+                      <v-list-item @click="vowOfTheDisciple">
+                        <v-list-item-title> Vow Of The Disciple Theme </v-list-item-title>
+                      </v-list-item>
+                    </v-list-item-group>
+                  </v-list>
+                </v-menu>
+              </v-card-text>
+            </v-container>
+          </v-card>
+        </v-dialog>
+
   </div>
 </template>
 
+
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { colors } from 'vuetify/lib'
+import { colors } from 'vuetify/lib' 
 
 @Component({})
 export default class SettingsDialog extends Vue {
   dialog = false
-
+  menu = false
 
   toggleDialog() {
     this.dialog = !this.dialog
   }
 
+  toggleMenu() {
+    this.menu = !this.menu
+  }
+  
   turnOnTheLights() {
     this.$vuetify.theme.dark = false
   }
@@ -85,6 +116,8 @@ export default class SettingsDialog extends Vue {
   turnOffTheLights() {
     this.$vuetify.theme.dark = true
   }
+
+  
 
   purpleTheme() {
     const purpleTheme = {
@@ -135,3 +168,4 @@ export default class SettingsDialog extends Vue {
   }
 }
 </script>
+

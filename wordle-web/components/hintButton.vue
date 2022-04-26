@@ -38,9 +38,10 @@
     </v-card-text>
     </v-card>
     </v-dialog>
-  </template>
+</template>
 
 <script lang = "ts">
+
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component({ components: {} })
