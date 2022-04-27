@@ -3,7 +3,7 @@
       <h1>About</h1>
     <p>
           This class project demonstrates various methods created on
-          the vue framework. This replecation of the game wordle demonstrates
+          the vue framework. This replecation of the game wordle, demonstrates
           just how easy vue makes modern web developing.
     </p>
     <br>

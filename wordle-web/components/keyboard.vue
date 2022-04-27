@@ -6,6 +6,7 @@
           <v-btn
             :color="letterColor(char)"
             :disabled="wordleGame.gameOver"
+            :elevation="15"
             @click="setLetter(char)"
           >
             {{ char }}
@@ -28,6 +29,9 @@
     >
       <v-icon>mdi-backspace</v-icon>
     </v-btn>
+    <v-row>
+        <word-options :wordleGame="wordleGame" />
+    </v-row>
   </v-card>
 </template>
 

@@ -637,4 +637,8 @@ export abstract class WordsService {
     'yacht',
     'zebra',
   ]
+
+  static getWords(): string[] {
+    return this.#words
+  }
 }
