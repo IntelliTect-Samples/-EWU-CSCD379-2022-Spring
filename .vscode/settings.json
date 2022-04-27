@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "Wordle.api/bin/Release/net6.0/publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/d00e0df2-c035-47ff-8cf9-4fa411e2fef8/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/wordle1"
+}
