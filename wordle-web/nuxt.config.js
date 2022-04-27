@@ -58,6 +58,16 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
         },
+        light: {
+          primary: colors.pink.lighten4,
+          accent: colors.purple.lighten4,
+          secondary: colors.amber.lighten3,
+          info: colors.teal.lighten1,
+          warning: colors.amber.lighten4,
+          error: colors.cyan.lighten4,
+          success: colors.green.accent3,
+
+        }
       },
     },
   },
