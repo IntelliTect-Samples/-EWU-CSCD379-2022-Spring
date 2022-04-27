@@ -17,12 +17,7 @@
               <v-card-text>
                 <v-menu offset-y>
                   <template #activator="{ on, attrs }">
-                      <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                        <v-card-actions> 
-                          <v-spacer/>
-                            <v-btn color="primary" nuxt to="/about"> About Page </v-btn>
-                          </v-card-actions>
-                      </v-btn>
+                      <v-btn color="primary" v-bind="attrs" v-on="on" nuxt to="/about" @click="menu=!menu"> About Page </v-btn>
                   </template>
                 </v-menu>
               </v-card-text>

@@ -8,7 +8,7 @@
           Kudos to Meg, one of the greatest programmers this world has ever seen 
           and who also just so happens to be the person grading this website.
         </footer>      
-        <v-card-actions> 
+        <v-card-actions justify="center"> 
                 <v-spacer/>
                 
           <v-btn color="primary" nuxt to="/game"> Back to the Game </v-btn>
