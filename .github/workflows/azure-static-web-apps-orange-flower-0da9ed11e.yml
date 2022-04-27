@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@
+      - uses: actions/checkout@v2
         name: Checkout source
         with:
           submodules: true
