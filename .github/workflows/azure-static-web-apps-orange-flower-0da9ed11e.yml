@@ -26,9 +26,6 @@ jobs:
       - run: npm i
         name: Run NPM install
         working-directory: ./wordle-web
-      - run: npm run test
-        name: Run npm tests
-        working-directory: ./wordle-web
       - run: npm run generate
         name: Generate nuxt app
         working-directory: ./wordle-web
