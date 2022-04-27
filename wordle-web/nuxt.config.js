@@ -59,12 +59,12 @@ export default {
           success: colors.green.accent3,
         },
         light: {
-          primary: colors.pink.lighten4,
-          accent: colors.purple.lighten4,
+          primary: colors.pink.lighten3,
+          accent: colors.purple.lighten3,
           secondary: colors.amber.lighten3,
           info: colors.teal.lighten1,
-          warning: colors.amber.lighten4,
-          error: colors.cyan.lighten4,
+          warning: colors.amber.lighten3,
+          error: colors.cyan.lighten3,
           success: colors.green.accent3,
 
         }
