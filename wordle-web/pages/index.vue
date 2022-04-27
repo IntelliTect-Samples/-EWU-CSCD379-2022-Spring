@@ -10,6 +10,10 @@
             <h2>Welcome to eldroW</h2>
             <br>
             <p>
+              For best experience please turn up your volume
+              <v-icon>mdi-volume-high</v-icon>
+            </p>
+            <p>
               Antonio Gomez
             </p>
         </v-card-text>

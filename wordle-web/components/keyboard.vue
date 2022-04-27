@@ -7,7 +7,8 @@
             :color="letterColor(char)"
             :disabled="wordleGame.gameOver"
             :elevation="15"
-            @click="setLetter(char)"
+            @click="setLetter(char),makeSound()"
+          
           >
             {{ char }}
           </v-btn>
@@ -80,6 +81,17 @@ export default class KeyBoard extends Vue {
     }
 
     return Letter.getColorCode(LetterStatus.Unknown)
+  }
+  makeSound(){
+    let sound = new Audio("http://peal.io/download/feju3")
+
+    sound.currentTime=0;
+    sound.play()
+    setInterval(function(){
+    if(sound.currentTime> 1){
+      sound.pause();
+    }
+    },1);
   }
 }
 </script>
