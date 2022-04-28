@@ -1,6 +1,10 @@
 <template>
   <div>
 
+     <v-btn icon @click="helpDialog">
+      <v-icon> mdi-help </v-icon>
+    </v-btn>
+
     <v-btn icon @click="aboutDialog">
       <v-icon> mdi-hamburger</v-icon>
     </v-btn>
@@ -8,6 +12,8 @@
     <v-btn icon @click="toggleDialog">
       <v-icon> mdi-cog </v-icon>
     </v-btn>
+
+   
 
      <v-dialog v-model="about" width="450">
       <v-card>
@@ -29,6 +35,43 @@
       </v-card>
     </v-dialog>
 
+         <v-dialog v-model="help" width="450">
+      <v-card>
+        <v-container>
+          <v-card-title> Help </v-card-title>
+
+          <v-card-text>
+            <v-menu offset-y>
+              <template #activator="{ on, attrs }">
+                <br>
+                <br>
+                <v-btn color="success" dark v-bind="attrs" v-on="on">
+                  Letter is part of word<br>
+                  (right spot)
+                </v-btn>
+                <br>
+                <br>
+                <v-btn color="warning" dark v-bind="attrs" v-on="on">
+                  Letter is part of word<br>
+                  (wrong spot)
+                </v-btn>
+                <br>
+                <br>
+                <v-btn color="error" dark v-bind="attrs" v-on="on">
+                  Letter is not part of word<br>
+                  (Wrong letter choice)
+                </v-btn>
+
+                <p>Use key ? to fill in word space and then click the red fill
+                button (cheat) to generate a list of possible words!</p>
+              </template>
+            </v-menu>
+
+           
+          </v-card-text>
+        </v-container>
+      </v-card>
+    </v-dialog>
     
 
     
@@ -86,7 +129,16 @@
       </v-card>
     </v-dialog>
   </div>
+
+  
+
+
+
+
+  
 </template>
+
+
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
@@ -96,6 +148,7 @@ import { colors } from 'vuetify/lib'
 export default class SettingsDialog extends Vue {
   dialog = false
   about = false
+  help = false
 
   toggleDialog() {
     this.dialog = !this.dialog
@@ -103,6 +156,10 @@ export default class SettingsDialog extends Vue {
 
   aboutDialog(){
     this.about = !this.about
+  }
+
+  helpDialog(){
+    this.help = !this.help
   }
 
   turnOnTheLights() {
