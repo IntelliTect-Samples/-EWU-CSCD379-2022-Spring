@@ -1,8 +1,10 @@
 <template>
   <v-app>
     <v-app-bar fixed app>
+      <v-icon>mdi-home </v-icon>
       <router-link to="/" class="text-h4 font-weight-black no-decoration">
         Wordle
+        
       </router-link>
       <v-spacer />
       <settings-dialog />
