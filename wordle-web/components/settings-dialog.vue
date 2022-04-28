@@ -62,8 +62,14 @@
                   (Wrong letter choice)
                 </v-btn>
 
-                <p>Use key ? to fill in word space and then click the red fill
-                button (cheat) to generate a list of possible words!</p>
+                <p>
+                Guess the word of the day! Use the letter keys to stage a word, then press the
+                Guess key to see how close your guess is!  
+                You get 6 tries then its GAME OVER!
+                Use key ? to fill in word space and then click the red fill
+                button (cheat) to generate a list of possible words!
+                GOODLUCK!
+                </p>
               </template>
             </v-menu>
 
