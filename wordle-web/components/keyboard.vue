@@ -47,9 +47,9 @@ export default class KeyBoard extends Vue {
   wordleGame!: WordleGame
 
   chars = [
-    ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-    ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-    ['z', 'x', 'c', 'v', 'b', 'n', 'm', '?'],
+    ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+    ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+    ['Z', 'X', 'C', 'V', 'B', 'N', 'M', '?'],
   ]
 
   setLetter(char: string) {
@@ -82,9 +82,9 @@ export default class KeyBoard extends Vue {
 
     return Letter.getColorCode(LetterStatus.Unknown)
   }
+  
   makeSound(){
     let sound = new Audio("http://peal.io/download/feju3")
-
     sound.currentTime=0;
     sound.play()
     setInterval(function(){

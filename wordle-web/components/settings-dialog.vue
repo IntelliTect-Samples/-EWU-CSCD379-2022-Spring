@@ -75,6 +75,9 @@
                   <v-list-item @click="vampireTheme">
                     <v-list-item-title> scarlit </v-list-item-title>
                   </v-list-item>
+                  <v-list-item @click="spaceTheme">
+                    <v-list-item-title> spacerace </v-list-item-title>
+                  </v-list-item>
                 </v-list-item-group>
               </v-list>
             </v-menu>
@@ -132,14 +135,30 @@ export default class SettingsDialog extends Vue {
       accent: colors.red.darken3,
       secondary: colors.red,
       info: '#C62828',
-      warning: colors.pink.accent1,
-      error: colors.pink.accent3,
-      success: colors.deepPurple.lighten4,
+      warning: '#827717',
+      error:  '#880E4F',
+      success: '#B2DFDB',
     }
     
 
     this.$vuetify.theme.themes.dark = vampireTheme
     this.$vuetify.theme.themes.light = vampireTheme
+  }
+  
+    spaceTheme() {
+    const spaceTheme = {
+      primary: '#18FFFF',
+      accent: '#18FFFF',
+      secondary: '#18FFFF',
+      info: '#18FFFF',
+      warning: '#FFA000',
+      error:  '#651FFF',
+      success: '#76FF03',
+    }
+    
+
+    this.$vuetify.theme.themes.dark = spaceTheme
+    this.$vuetify.theme.themes.light = spaceTheme
   }
 }
 </script>
