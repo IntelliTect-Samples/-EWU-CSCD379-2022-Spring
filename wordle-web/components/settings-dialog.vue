@@ -1,3 +1,6 @@
+ <template>
+  <div>
+  
 <v-btn icon @click="toggleDialog">
       <v-icon> mdi-cog </v-icon>
     </v-btn>
