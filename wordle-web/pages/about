@@ -1,0 +1,38 @@
+<template>
+  <v-container fluid fill-height justify-center>
+    <v-row class="mb-10 mt-5" justify="center">
+      <v-tooltip bottom>
+        <template #activator="{ on, attrs }">
+          <v-btn color="primary" nuxt to="/" fab v-bind="attrs" v-on="on">
+            <v-icon> mdi-home </v-icon>
+          </v-btn>
+        </template>
+        <span> Go Home </span>
+      </v-tooltip>
+    </v-row>
+
+    <v-row justify="center">
+      <v-card width="70%">
+        <v-expansion-panels accordion>
+          <v-expansion-panel>
+            <v-expansion-panel-header color="primary"
+              >About this Class</v-expansion-panel-header
+            >
+            <v-expansion-panel-content class="mt-5">
+              <h3>CSCD 379 .NET WEB APPLICATION DEVELOPMENT.</h3>
+              <br />
+              <p></p>
+              CSCD 379
+              Class time: 2:00 - 4:30 pm 
+              Classroom: 219 Catalyst Building
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <v-expansion-panel>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-card>
+    </v-row>
+  </v-container>
+</template>
+
+<script></script>
