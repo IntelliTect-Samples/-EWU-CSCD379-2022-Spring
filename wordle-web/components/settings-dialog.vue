@@ -73,10 +73,10 @@
                     <v-list-item-title> Purple </v-list-item-title>
                   </v-list-item>
                   <v-list-item @click="vampireTheme">
-                    <v-list-item-title> scarlit </v-list-item-title>
+                    <v-list-item-title> vampire </v-list-item-title>
                   </v-list-item>
                   <v-list-item @click="spaceTheme">
-                    <v-list-item-title> spacerace </v-list-item-title>
+                    <v-list-item-title> space race </v-list-item-title>
                   </v-list-item>
                 </v-list-item-group>
               </v-list>
