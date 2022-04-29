@@ -1,5 +1,8 @@
 <template>
   <v-card elevation = "0" width="650" class = "my-6" style ="background: linear-gradient(180deg, rgba(100,100,100,1) 0%, rgba(62,62,62,0.3) 70%, rgba(0,0,0,0.0) 100%)">
+    <audio id="click" src="https://assets.mixkit.co/sfx/preview/mixkit-cool-interface-click-tone-2568.mp3" preload="auto"/>
+    <audio id="guess" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3" preload="auto"/>
+    <audio id="bs" src= "https://assets.mixkit.co/sfx/preview/mixkit-negative-tone-interface-tap-2569.mp3" preload ="auto"/>
     <v-row  v-for="(charRow, i) in chars" :key="i" justify="center" dense no-gutters>
       <v-col v-for="char in charRow" :key="char" cols="1" dense no-gutters>
         <v-container class="text-center mx-0 px-1 py-1 my-0">
@@ -9,7 +12,7 @@
             elevation="10"
             :color="letterColor(char)"
             :disabled="wordleGame.gameOver"
-            @click="setLetter(char)"
+            @click="setLetter(char), clickNoise()"
           >
             {{ char }}
           </v-btn>
@@ -60,6 +63,7 @@ export default class KeyBoard extends Vue {
 
   removeLetter() {
     this.wordleGame.currentWord.removeLetter()
+    this.bsNoise();
   }
 
   guessWord() {
@@ -68,6 +72,7 @@ export default class KeyBoard extends Vue {
       this.wordleGame.currentWord.maxLetters
     ) {
       this.wordleGame.submitWord()
+      this.submitNoise();
     }
   }
   
@@ -85,5 +90,23 @@ export default class KeyBoard extends Vue {
 
     return Letter.getColorCode(LetterStatus.Unknown)
   }
+
+  clickNoise(){
+    const audioSource: HTMLElement = document.getElementById("click") as HTMLElement;
+    const audioClone = audioSource.cloneNode() as HTMLAudioElement;
+    audioClone.play();
+  }
+
+  submitNoise(){
+    const audioSource: HTMLElement = document.getElementById("guess") as HTMLElement;
+    const audioClone = audioSource.cloneNode() as HTMLAudioElement;
+    audioClone.play();
+  }
+  bsNoise(){
+    const audioSource: HTMLElement = document.getElementById("bs") as HTMLElement;
+    const audioClone = audioSource.cloneNode() as HTMLAudioElement;
+    audioClone.play();
+  }
+
 }
 </script>
