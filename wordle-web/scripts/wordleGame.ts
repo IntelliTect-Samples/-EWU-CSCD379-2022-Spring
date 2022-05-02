@@ -1,3 +1,4 @@
+import * as signalR from '@microsoft/signalr'
 import { LetterStatus } from './letter'
 import { Word } from './word'
 
@@ -8,15 +9,33 @@ export enum GameState {
 }
 
 export class WordleGame {
-  constructor(word: string) {
-    this.words.push(new Word())
-    this.word = word
-  }
-
   private word: string
   words: Word[] = []
   state: GameState = GameState.Active
   readonly maxGuesses = 6
+  readonly connection = new signalR.HubConnectionBuilder()
+    .withUrl('https://localhost:4000/gamehub')
+    .build()
+
+  readonly gameName = 'Wordle001'
+
+  readonly username: string = 'User: ' + Math.floor(Math.random() * 100000)
+
+  constructor(word: string) {
+    this.words.push(new Word())
+    this.word = word
+    this.connection
+      .start()
+      .catch((err) => {
+        console.log(err)
+      })
+      .then(() => {
+        this.connection.on('CharacterReceived', this.receiveChar)
+        this.connection.on('UserJoined', this.userJoined)
+        this.connection.on('UserLeft', this.userLeft)
+        this.connection.send('JoinGame', this.username, this.gameName)
+      })
+  }
 
   get currentWord(): Word {
     return this.words[this.words.length - 1]
@@ -46,6 +65,30 @@ export class WordleGame {
     return allLetters
       .filter((x) => x.status === LetterStatus.Wrong)
       .map((x) => x.char)
+  }
+
+  addLetter(char: string) {
+    this.currentWord.addLetter(char)
+    this.connection
+      .send('NewCharacter', this.username, char, this.gameName)
+      .then(() => {
+        console.log(`sent: ${char}`)
+      })
+  }
+
+  receiveChar = (username: string, char: string) => {
+    console.log(`Received: ${char} from ${username}`)
+    if (username !== this.username) {
+      this.currentWord.addLetter(char)
+    }
+  }
+
+  userJoined = (username: string) => {
+    console.log(`${username} joined`)
+  }
+
+  userLeft = (username: string) => {
+    console.log(`${username} left`)
   }
 
   submitWord() {

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using Wordle.Api.Hubs;
 
 namespace Wordle.Api
 {
@@ -21,9 +22,11 @@ namespace Wordle.Api
             {
                 options.AddPolicy(name: allOrigins,
                     policy => policy
-                        .AllowAnyOrigin()
+                        //.AllowAnyOrigin()
+                        .WithOrigins("http://localhost:3000")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
+                        .AllowCredentials()
                     );
             });
 
@@ -65,6 +68,8 @@ namespace Wordle.Api
                 });
 
             builder.Services.AddControllers();
+            builder.Services.AddSignalR();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
@@ -123,6 +128,8 @@ namespace Wordle.Api
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.MapHub<GameHub>("/gamehub");
 
             app.MapControllers();
 
