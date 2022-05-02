@@ -23,7 +23,7 @@ namespace Wordle.Api
                 options.AddPolicy(name: allOrigins,
                     policy => policy
                         //.AllowAnyOrigin()
-                        .WithOrigins("http://localhost:3000")
+                        .WithOrigins("http://localhost:3000", "https://mango-glacier-08064d21e.1.azurestaticapps.net")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials()
