@@ -1,4 +1,5 @@
 import * as signalR from '@microsoft/signalr'
+import NuxtConfig from '../nuxt.config.js'
 import { LetterStatus } from './letter'
 import { Word } from './word'
 
@@ -14,7 +15,7 @@ export class WordleGame {
   state: GameState = GameState.Active
   readonly maxGuesses = 6
   readonly connection = new signalR.HubConnectionBuilder()
-    .withUrl('https://localhost:4000/gamehub')
+    .withUrl(`${NuxtConfig.axios.baseURL}/gamehub`)
     .build()
 
   readonly gameName = 'Wordle001'
