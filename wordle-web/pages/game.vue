@@ -17,6 +17,22 @@
       {{ gameResult.text }}
       <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
     </v-alert>
+    <v-dialog 
+    v-model="alwaysOn" 
+    elevation="0"
+    width="40%"
+    :persistent="true">
+      <v-card class = "px-0 py-0 mx-0 my-0 justify-center" min-height="200">
+        <h1>Enter a name to track your score!</h1>
+        <v-divider />
+          <v-text-field v-model="playerName" outlined class ="px-15 my-3" @input="changeListener(playerName)" />
+        <v-card-actions>
+          <v-btn> Submit Name </v-btn>
+          <v-spacer />
+          <v-btn @click="alwaysOn=false"> No Thanks! </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <v-col>
       <v-row justify="center">
     <gameboard :wordleGame="wordleGame" />
@@ -29,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Prop} from 'vue-property-decorator'
 import { WordsService } from '~/scripts/wordsService'
 import { GameState, WordleGame } from '~/scripts/wordleGame'
 import KeyBoard from '~/components/keyboard.vue'
@@ -38,8 +54,11 @@ import { Word } from '~/scripts/word'
 
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
+  playerName: string ="Guest";
+  
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
+  alwaysOn: boolean = true;
 
   resetGame() {
     this.word = WordsService.getRandomWord()
@@ -62,6 +81,10 @@ export default class Game extends Vue {
       return word.letters[index - 1]?.char ?? ''
     }
     return ''
+  }
+
+  changeListener(value: string): void{
+    console.log(value);
   }
 }
 </script>

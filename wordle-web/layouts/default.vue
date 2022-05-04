@@ -11,6 +11,10 @@
             src="https://cdn.ewu.edu/wp-content/themes/ewu-2018/assets/eagle.svg"
           ></v-img>
       </v-btn>
+      <v-icon class ="px-4" dark>
+        mdi-account-circle
+      </v-icon> CurrentlyDoesntChange
+      <!-- Tips on how to change: https://github.com/nuxt/nuxt.js/issues/8122#issuecomment-709443008 -->
       <v-spacer />
       <settings-dialog />
     </v-app-bar>
