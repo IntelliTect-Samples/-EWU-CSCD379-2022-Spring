@@ -57,7 +57,7 @@ export default {
     customVariables: ['~/assets/variables.scss'],
     defaultAssets: {
       font: {
-        family: 'Libre Baskerville',
+        family: 'Arial',
       },
     },
     theme: {
