@@ -78,7 +78,7 @@
           <v-btn
             color="secondary"
             :loading="isLoading"
-            @click="changeButtonText"
+            @click="emitFn"
           >
             Change Text
           </v-btn>
@@ -105,6 +105,10 @@ export default class IndexPage extends Vue {
     setTimeout(() => {
       this.isLoading = false
     }, 1000)
+  }
+
+  emitFn(){
+    this.$emit("emit-fn");
   }
 }
 </script>

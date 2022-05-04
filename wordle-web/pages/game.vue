@@ -18,22 +18,26 @@
       <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
     </v-alert>
     <v-dialog 
-    v-model="alwaysOn" 
+    v-model="leaderboardPrompt" 
     elevation="0"
     width="40%"
     :persistent="true">
       <v-card class = "px-0 py-0 mx-0 my-0 justify-center" min-height="200">
         <h1>Enter a name to track your score!</h1>
         <v-divider />
-          <v-text-field v-model="playerName" outlined class ="px-15 my-3" @input="changeListener(playerName)" />
+          <v-text-field v-model="playerName" outlined class ="px-15 my-3" />
         <v-card-actions>
-          <v-btn> Submit Name </v-btn>
+          <v-btn @click="leaderboardPrompt=false"> Submit Name </v-btn>
           <v-spacer />
-          <v-btn @click="alwaysOn=false"> No Thanks! </v-btn>
+          <v-btn @click="leaderboardPrompt=false, cancelNameEntry()"> No Thanks! </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
     <v-col>
+      <v-icon class ="px-4" dark>
+        mdi-account-circle
+      </v-icon>
+      {{playerName}}
       <v-row justify="center">
     <gameboard :wordleGame="wordleGame" />
       </v-row >
@@ -55,10 +59,11 @@ import { Word } from '~/scripts/word'
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
   playerName: string ="Guest";
+  tempName = this.playerName;
   
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
-  alwaysOn: boolean = true;
+  leaderboardPrompt: boolean = false;
 
   resetGame() {
     this.word = WordsService.getRandomWord()
@@ -67,9 +72,13 @@ export default class Game extends Vue {
 
   get gameResult() {
     if (this.wordleGame.state === GameState.Won) {
+      if(this.playerName === "Guest")
+        this.leaderboardPrompt = true;
       return { type: 'success', text: 'Yay! You won!' }
     }
     if (this.wordleGame.state === GameState.Lost) {
+      if(this.playerName === "Guest")
+       this.leaderboardPrompt = true;
       return { type: 'error', text: `You lost... :( The word was ${this.word}` }
     }
     return { type: '', text: '' }
@@ -83,8 +92,9 @@ export default class Game extends Vue {
     return ''
   }
 
-  changeListener(value: string): void{
-    console.log(value);
+  cancelNameEntry(originalName :string) {
+    this.playerName = this.tempName;
+    console.log(this.playerName)
   }
 }
 </script>
