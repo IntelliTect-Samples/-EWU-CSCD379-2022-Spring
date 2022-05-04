@@ -38,15 +38,15 @@ Add leaderboard to the application
 - The logic should reside in a service that is injected via dependency injection into the controller ❌✅
 - Set up CORS (Cross Origin Resource Sharing) ❌✅
 
-**2. Create a dialog for getting the user's name** ❌✅
-- If we don't have the user's name, present the user with a dialog that allows them to type in their name ❌✅
-- The users current name should show on the game page (upper right) ❌✅
-  - This should be visible when setting/changing the name. It should change as the user types ❌✅
-- The user should be able to click on their name to change it (with the same dialog) ❌✅
+**2. Create a dialog for getting the user's name** ✅
+- If we don't have the user's name, present the user with a dialog that allows them to type in their name ✅
+- The users current name should show on the game page (upper right) ✅
+  - This should be visible when setting/changing the name. It should change as the user types ✅
+- The user should be able to click on their name to change it (with the same dialog) ✅
 - Save the name in local storage and load it for the next game if it is set ❌✅
-- If the name is not set, display Guest as the name. ❌✅
-  - Clicking on this allows for preemptive setting of the name before the end of the game ❌✅
-- Dialog must be persistent, doesn't close by clicking off the dialog ❌✅
+- If the name is not set, display Guest as the name. ✅
+  - Clicking on this allows for preemptive setting of the name before the end of the game ✅
+- Dialog must be persistent, doesn't close by clicking off the dialog ✅
 
 **3. Save the Score and Seconds to complete** ❌✅
 - Save the score and time to complete in seconds at the end of the game if we have a name. ❌✅
