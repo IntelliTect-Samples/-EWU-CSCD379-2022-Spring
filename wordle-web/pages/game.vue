@@ -27,17 +27,22 @@
         <v-divider />
           <v-text-field v-model="playerName" outlined class ="px-15 my-3" />
         <v-card-actions>
-          <v-btn @click="leaderboardPrompt=false"> Submit Name </v-btn>
+          <v-btn @click="leaderboardPrompt=false, submitName()"> Submit Name </v-btn>
           <v-spacer />
           <v-btn @click="leaderboardPrompt=false, cancelNameEntry()"> No Thanks! </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
     <v-col>
-      <v-icon class ="px-4" dark>
-        mdi-account-circle
-      </v-icon>
-      {{playerName}}
+      <v-row justify="right">
+      <v-spacer />
+      <v-btn plain @click="leaderboardPrompt=true">
+        <v-icon dark>
+          mdi-account-circle
+       </v-icon>
+        {{playerName}}
+      </v-btn>
+      </v-row>
       <v-row justify="center">
     <gameboard :wordleGame="wordleGame" />
       </v-row >
@@ -95,6 +100,12 @@ export default class Game extends Vue {
   cancelNameEntry(originalName :string) {
     this.playerName = this.tempName;
     console.log(this.playerName)
+  }
+
+  submitName(){
+    if(this.playerName ==="")
+      this.playerName="Guest"
+    this.tempName = this.playerName;
   }
 }
 </script>
