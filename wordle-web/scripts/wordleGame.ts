@@ -50,9 +50,11 @@ export class WordleGame {
       .filter((x) => x.status === LetterStatus.Wrong)
       .map((x) => x.char)
   }
+
   public setCurrentWord(to :string){
     this.currentWord.setWord(to);
   }
+
   submitWord() {
     if (this.currentWord.evaluateWord(this.word)) {
       this.state = GameState.Won
