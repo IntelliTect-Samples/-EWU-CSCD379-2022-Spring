@@ -43,6 +43,7 @@
         {{playerName}}
       </v-btn>
       </v-row>
+      {{this.stopwatch.currentTime}}
       <v-row justify="center">
     <gameboard :wordleGame="wordleGame" />
       </v-row >
@@ -60,15 +61,22 @@ import { GameState, WordleGame } from '~/scripts/wordleGame'
 import KeyBoard from '~/components/keyboard.vue'
 import GameBoard from '~/components/gameboard.vue'
 import { Word } from '~/scripts/word'
+import {Stopwatch} from '~/scripts/stopwatch'
 
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
   playerName: string ="Guest";
   tempName = this.playerName;
+  stopwatch: Stopwatch = new Stopwatch();
   
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
   leaderboardPrompt: boolean = false;
+
+  mounted(){
+    this.stopwatch.Start();
+  }
+
 
   resetGame() {
     this.word = WordsService.getRandomWord()
@@ -107,5 +115,7 @@ export default class Game extends Vue {
       this.playerName="Guest"
     this.tempName = this.playerName;
   }
+
+
 }
 </script>
