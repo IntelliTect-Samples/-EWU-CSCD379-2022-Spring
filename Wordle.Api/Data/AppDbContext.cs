@@ -12,5 +12,9 @@ namespace Wordle.Api.Data
         }
 
         public DbSet<ScoreStat> ScoreStats { get; set; } = null!;
+        public DbSet<Player> Players { get; set; } = null!;
+        public DbSet<PlayerGame> PlayerGames { get; set; } = null!;
+        public DbSet<PlayerGameGuess> PlayerGameGuesss { get; set; } = null!;
+        public DbSet<Word> Words { get; set; } = null!;
     }
 }
