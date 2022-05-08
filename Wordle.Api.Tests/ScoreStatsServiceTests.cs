@@ -40,13 +40,13 @@ namespace Wordle.Api.Tests
             
             sut.Update(1,2);
             Assert.AreEqual((scoreStat1.TotalGames+1), sut.GetScoreStats().First(f => f.Score==1).TotalGames);
-            Assert.AreEqual(scoreStat1.AverageSeconds+(scoreStat1.AverageSeconds-2)/(scoreStat1.TotalGames+1), sut.GetScoreStats().First(f => f.Score == 1).AverageSeconds);
+            Assert.AreEqual(scoreStat1.AverageSeconds+(2-scoreStat1.AverageSeconds)/(scoreStat1.TotalGames+1), sut.GetScoreStats().First(f => f.Score == 1).AverageSeconds);
 
             ScoreStat scoreStat2 = sut.GetScoreStats().First(f => f.Score == 1).Clone();
             sut.Update(1, 4);
 
             Assert.AreEqual((scoreStat2.TotalGames + 1), sut.GetScoreStats().First(f => f.Score == 1).TotalGames);
-            Assert.AreEqual(scoreStat2.AverageSeconds + (scoreStat2.AverageSeconds - 4) / (scoreStat2.TotalGames + 1), sut.GetScoreStats().First(f => f.Score == 1).AverageSeconds);
+            Assert.AreEqual(scoreStat2.AverageSeconds + (4-scoreStat2.AverageSeconds) / (scoreStat2.TotalGames + 1), sut.GetScoreStats().First(f => f.Score == 1).AverageSeconds);
         }
     }
 }

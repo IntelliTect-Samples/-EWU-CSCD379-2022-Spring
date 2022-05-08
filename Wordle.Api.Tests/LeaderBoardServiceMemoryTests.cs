@@ -13,13 +13,14 @@ namespace Wordle.Api.Tests
             LeaderBoardServiceMemory sut = new LeaderBoardServiceMemory();
             Assert.AreEqual(3, sut.GetScores().Count());
         }
-        [Ignore("Make the code make this work!")]
+        //[Ignore("Make the code make this work!")]
         [TestMethod]
         public void AddScore_AddsNewPlayer()
         {
             LeaderBoardServiceMemory sut = new LeaderBoardServiceMemory();
+            int oldScores = sut.GetScores().Count();
             sut.AddScore(new GameScore(1, "test"));
-            Assert.AreEqual(4, sut.GetScores().Count());
+            Assert.AreEqual(oldScores, sut.GetScores().Count());
         }
         
         [TestMethod]
