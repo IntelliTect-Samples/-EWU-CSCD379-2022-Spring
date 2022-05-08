@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Wordle.Api.Migrations
 {
-    public partial class PlayerGame : Migration
+    public partial class PlayerWord : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,26 +36,28 @@ namespace Wordle.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PlayerGames",
+                name: "PlayerWords",
                 columns: table => new
                 {
-                    PlayerGameId = table.Column<int>(type: "int", nullable: false)
+                    PlayerWordId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlayerId = table.Column<int>(type: "int", nullable: false),
                     WordId = table.Column<int>(type: "int", nullable: false),
-                    DatePlayed = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    State = table.Column<int>(type: "int", nullable: false),
+                    DateStarted = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    DateEnded = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlayerGames", x => x.PlayerGameId);
+                    table.PrimaryKey("PK_PlayerWords", x => x.PlayerWordId);
                     table.ForeignKey(
-                        name: "FK_PlayerGames_Players_PlayerId",
+                        name: "FK_PlayerWords_Players_PlayerId",
                         column: x => x.PlayerId,
                         principalTable: "Players",
                         principalColumn: "PlayerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PlayerGames_Words_WordId",
+                        name: "FK_PlayerWords_Words_WordId",
                         column: x => x.WordId,
                         principalTable: "Words",
                         principalColumn: "WordId",
@@ -63,49 +65,51 @@ namespace Wordle.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PlayerGameGuesss",
+                name: "PlayerWordGuesss",
                 columns: table => new
                 {
-                    PlayerGameGuessId = table.Column<int>(type: "int", nullable: false)
+                    PlayerWordGuessId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PlayerGameId = table.Column<int>(type: "int", nullable: false),
+                    PlayerWordId = table.Column<int>(type: "int", nullable: false),
                     Guess = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GetDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    GuessIsCorrect = table.Column<bool>(type: "bit", nullable: false),
+                    GuessDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    GuessNumber = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlayerGameGuesss", x => x.PlayerGameGuessId);
+                    table.PrimaryKey("PK_PlayerWordGuesss", x => x.PlayerWordGuessId);
                     table.ForeignKey(
-                        name: "FK_PlayerGameGuesss_PlayerGames_PlayerGameId",
-                        column: x => x.PlayerGameId,
-                        principalTable: "PlayerGames",
-                        principalColumn: "PlayerGameId",
+                        name: "FK_PlayerWordGuesss_PlayerWords_PlayerWordId",
+                        column: x => x.PlayerWordId,
+                        principalTable: "PlayerWords",
+                        principalColumn: "PlayerWordId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PlayerGameGuesss_PlayerGameId",
-                table: "PlayerGameGuesss",
-                column: "PlayerGameId");
+                name: "IX_PlayerWordGuesss_PlayerWordId",
+                table: "PlayerWordGuesss",
+                column: "PlayerWordId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PlayerGames_PlayerId",
-                table: "PlayerGames",
+                name: "IX_PlayerWords_PlayerId",
+                table: "PlayerWords",
                 column: "PlayerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PlayerGames_WordId",
-                table: "PlayerGames",
+                name: "IX_PlayerWords_WordId",
+                table: "PlayerWords",
                 column: "WordId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PlayerGameGuesss");
+                name: "PlayerWordGuesss");
 
             migrationBuilder.DropTable(
-                name: "PlayerGames");
+                name: "PlayerWords");
 
             migrationBuilder.DropTable(
                 name: "Players");

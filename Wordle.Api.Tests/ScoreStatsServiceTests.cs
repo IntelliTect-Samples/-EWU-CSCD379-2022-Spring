@@ -11,23 +11,14 @@ using Wordle.Api.Services;
 namespace Wordle.Api.Tests
 {
     [TestClass]
-    public class ScoreStatsServiceTests
+    public class ScoreStatsServiceTests: DatabaseTestBase
     {
-        private AppDbContext _context;
-        
-        public ScoreStatsServiceTests()
-        {
-            var contextOptions = new DbContextOptionsBuilder<AppDbContext>()
-                .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Wordle.Api.Tests;Trusted_Connection=True;MultipleActiveResultSets=true");
-            _context = new AppDbContext(contextOptions.Options);
-            _context.Database.Migrate();
-            ScoreStatsService.Seed(_context);
-            
-        }
+        public ScoreStatsServiceTests() : base() { }
+
         [TestMethod]
         public void GetScoreStats()
         {
-            ScoreStatsService sut = new ScoreStatsService(_context);
+            ScoreStatsService sut = new(_context);
 
             Assert.AreEqual(6, sut.GetScoreStats().Count());
         }
@@ -35,7 +26,7 @@ namespace Wordle.Api.Tests
         [TestMethod]
         public void CalculateAverageSeconds()
         {
-            ScoreStatsService sut = new ScoreStatsService(_context);
+            ScoreStatsService sut = new(_context);
             ScoreStat scoreStat1 = sut.GetScoreStats().First(f => f.Score == 1).Clone();
             
             sut.Update(1,2);
