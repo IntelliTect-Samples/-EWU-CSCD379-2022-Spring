@@ -72,7 +72,7 @@ export default class KeyBoard extends Vue {
       this.wordleGame.currentWord.maxLetters
     ) {
       this.wordleGame.submitWord()
-      // this.submitNoise();
+      this.submitNoise();
     }
   }
   

@@ -35,6 +35,7 @@
     </v-dialog>
     <v-col>
       <v-row>
+      Game Time: {{(stopwatch.currentTime/1000/60/60)>1?Math.floor(stopwatch.currentTime/1000/60/60)+":":""}}{{Math.floor(stopwatch.currentTime/1000/60)}}:{{Math.floor(stopwatch.currentTime/1000%60)< 10?'0'+Math.floor(stopwatch.currentTime/1000%60):Math.floor(stopwatch.currentTime/1000%60)}}
       <v-spacer />
       <v-btn plain @click="leaderboardPrompt=true">
         <v-icon dark>
@@ -44,7 +45,6 @@
       </v-btn>
       </v-row>
       <!-- Full game time in (h)(h)(:)(m)m:ss-->
-      Game Time: {{(stopwatch.currentTime/1000/60/60)>1?Math.floor(stopwatch.currentTime/1000/60/60)+":":""}}{{Math.floor(stopwatch.currentTime/1000/60)}}:{{Math.floor(stopwatch.currentTime/1000%60)<10?'0'+Math.floor(stopwatch.currentTime/1000%60):Math.floor(stopwatch.currentTime/1000%60)}}
       <v-row justify="center">
     <gameboard :wordleGame="wordleGame" />
       </v-row >
@@ -77,7 +77,6 @@ export default class Game extends Vue {
   mounted(){
     if(!this.stopwatch.isRunning){
       this.stopwatch.Start();
-      console.log("Started Stopwatch");
     }
   }
 
