@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - main
+      - "Assignment*"
     paths:
       - 'Wordle.api/**'
   workflow_dispatch:
@@ -48,6 +49,7 @@ jobs:
 
       - name: Upload Test TRX file
         uses: actions/upload-artifact@v2  # upload test results
+        continue-on-error: true       # if there are no test results, this should still pass.
         if: success() || failure()        # run this step even if previous step failed
         with:
           name: dotnet-trx
