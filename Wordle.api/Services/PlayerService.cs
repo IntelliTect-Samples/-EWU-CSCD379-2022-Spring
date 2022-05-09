@@ -10,7 +10,7 @@ namespace Wordle.Api.Services
         }
         public IEnumerable<Player> GetPlayers()
         {
-            var result = _context.PlayerStats.OrderBy(p => p.AverageSecondsPerGame);
+            var result = _context.PlayerStats.OrderBy(p => p.AverageSecondsPerGame).Take(10);
             return result;
         }
         public void Update(string name, int attempts, int seconds)
