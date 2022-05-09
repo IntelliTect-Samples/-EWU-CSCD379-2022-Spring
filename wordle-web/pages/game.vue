@@ -71,6 +71,7 @@ export default class Game extends Vue {
   playerName: string ="Guest";
   tempName = this.playerName;
   stopwatch: Stopwatch = new Stopwatch();
+  unposted: boolean = false;
 
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
@@ -91,12 +92,11 @@ export default class Game extends Vue {
   get gameResult() {
     if (this.wordleGame.state === GameState.Won) {
       this.endOfGame();
-      console.log("win");
+      this.postGameToLeaderboard();
       return { type: 'success', text: 'Yay! You won!' }
     }
     if (this.wordleGame.state === GameState.Lost) {
       this.endOfGame();
-      console.log("lose");
       return { type: 'error', text: `You lost... :( The word was ${this.word}` }
     }
     return { type: '', text: '' }
@@ -104,9 +104,10 @@ export default class Game extends Vue {
 
   endOfGame(){
     this.stopwatch.Stop();
-      if(this.playerName === "Guest")
+      if(this.playerName === "Guest"){
         this.leaderboardPrompt = true;
-      this.postGameToLeaderboard()
+        this.unposted = true;
+      }
   }
 
   getLetter(row: number, index: number) {
@@ -119,13 +120,18 @@ export default class Game extends Vue {
 
   cancelNameEntry(originalName :string) {
     this.playerName = this.tempName;
-    console.log(this.playerName)
+    if(this.unposted){
+      this.postGameToLeaderboard();
+    }
   }
 
   submitName(){
     if(this.playerName ==="")
       this.playerName="Guest"
     this.tempName = this.playerName;
+    if(this.unposted){
+      this.postGameToLeaderboard();
+    }
   }
 
   postGameToLeaderboard(){
@@ -136,6 +142,8 @@ export default class Game extends Vue {
   }).then(function (response) {
     console.log(response);
   })
+
+  this.unposted = false;
   }
 }
 </script>
