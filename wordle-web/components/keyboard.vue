@@ -102,6 +102,7 @@ export default class KeyBoard extends Vue {
     const audioClone = audioSource.cloneNode() as HTMLAudioElement;
     audioClone.play();
   }
+  
   bsNoise(){
     const audioSource: HTMLElement = document.getElementById("bs") as HTMLElement;
     const audioClone = audioSource.cloneNode() as HTMLAudioElement;
