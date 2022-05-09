@@ -10,7 +10,7 @@ namespace Wordle.Api.Services
         }
         public IEnumerable<Player> GetPlayers()
         {
-            var result = _context.PlayerStats.OrderBy(p => p.AverageSecondsPerGame).Take(10);
+            var result = _context.PlayerStats.OrderBy(p => p.AverageSecondsPerGame);
             return result;
         }
         public void Update(string name, int attempts, int seconds)
@@ -25,10 +25,13 @@ namespace Wordle.Api.Services
                 player.GameCount = 1;
                 _context.PlayerStats.Add(player);
             }
-            int oldGameCount = player.GameCount;
-            player.GameCount++;
-            player.AverageSecondsPerGame = (oldGameCount * player.AverageSecondsPerGame + seconds) / player.GameCount;
-            player.AverageAttempts = (oldGameCount * player.AverageAttempts + attempts) / player.GameCount;
+            else
+            {
+                int oldGameCount = player.GameCount;
+                player.GameCount++;
+                player.AverageSecondsPerGame = (oldGameCount * player.AverageSecondsPerGame + seconds) / player.GameCount;
+                player.AverageAttempts = (oldGameCount * player.AverageAttempts + attempts) / player.GameCount;
+            }
             _context.SaveChanges();
         }
         public static void Seed(AppDbContext context)
