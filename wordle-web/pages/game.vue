@@ -71,7 +71,7 @@ export default class Game extends Vue {
   playerName: string ="Guest";
   tempName = this.playerName;
   stopwatch: Stopwatch = new Stopwatch();
-  unposted: boolean = false;
+  unposted: boolean = false; //remains false unless a player is prompted to change their name at the end of the game
 
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
@@ -87,12 +87,12 @@ export default class Game extends Vue {
   resetGame() {
     this.word = WordsService.getRandomWord()
     this.wordleGame = new WordleGame(this.word)
+    this.unposted = false //Should never be needed
   }
 
   get gameResult() {
     if (this.wordleGame.state === GameState.Won) {
       this.endOfGame();
-      this.postGameToLeaderboard();
       return { type: 'success', text: 'Yay! You won!' }
     }
     if (this.wordleGame.state === GameState.Lost) {
@@ -105,8 +105,9 @@ export default class Game extends Vue {
   endOfGame(){
     this.stopwatch.Stop();
       if(this.playerName === "Guest"){
-        this.leaderboardPrompt = true;
         this.unposted = true;
+
+        this.leaderboardPrompt = true;
       }
   }
 
@@ -120,8 +121,8 @@ export default class Game extends Vue {
 
   cancelNameEntry(originalName :string) {
     this.playerName = this.tempName;
-    if(this.unposted){
-      this.postGameToLeaderboard();
+    if(this.unposted){ //unposted is only true if a player is prompted with a rename at the very end of a game.
+      this.postGameToLeaderboard(); //If called during a lost game, the score is not recorded. See PostGameToLeaderboard
     }
   }
 
@@ -135,6 +136,8 @@ export default class Game extends Vue {
   }
 
   postGameToLeaderboard(){
+
+  if (this.wordleGame.state===GameState.Won){
     this.$axios.post('/api/Player',{
     "name": this.playerName,
     "attempts": this.wordleGame.words.length,
@@ -142,6 +145,7 @@ export default class Game extends Vue {
   }).then(function (response) {
     console.log(response);
   })
+  }
 
   this.unposted = false;
   }
