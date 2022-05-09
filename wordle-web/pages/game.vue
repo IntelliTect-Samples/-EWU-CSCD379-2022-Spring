@@ -63,6 +63,8 @@ import KeyBoard from '~/components/keyboard.vue'
 import GameBoard from '~/components/gameboard.vue'
 import { Word } from '~/scripts/word'
 import {Stopwatch} from '~/scripts/stopwatch'
+import {Player} from '~/scripts/player'
+import axios from 'axios'
 
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
@@ -88,18 +90,23 @@ export default class Game extends Vue {
 
   get gameResult() {
     if (this.wordleGame.state === GameState.Won) {
-      this.stopwatch.Stop();
-      if(this.playerName === "Guest")
-        this.leaderboardPrompt = true;
+      this.endOfGame();
+      console.log("win");
       return { type: 'success', text: 'Yay! You won!' }
     }
     if (this.wordleGame.state === GameState.Lost) {
-      this.stopwatch.Stop();
-      if(this.playerName === "Guest")
-       this.leaderboardPrompt = true;
+      this.endOfGame();
+      console.log("lose");
       return { type: 'error', text: `You lost... :( The word was ${this.word}` }
     }
     return { type: '', text: '' }
+  }
+
+  endOfGame(){
+    this.stopwatch.Stop();
+      if(this.playerName === "Guest")
+        this.leaderboardPrompt = true;
+      this.postGameToLeaderboard()
   }
 
   getLetter(row: number, index: number) {
@@ -121,6 +128,14 @@ export default class Game extends Vue {
     this.tempName = this.playerName;
   }
 
-
+  postGameToLeaderboard(){
+    this.$axios.post('/api/Player',{
+    "name": this.playerName,
+    "attempts": this.wordleGame.words.length,
+    "seconds": Math.round(this.stopwatch.currentTime/1000)
+  }).then(function (response) {
+    console.log(response);
+  })
+  }
 }
 </script>

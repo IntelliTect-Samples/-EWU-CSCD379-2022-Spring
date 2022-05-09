@@ -1,5 +1,11 @@
 <template>
-    <div>      
+    <div>
+
+      <v-btn
+          icon nuxt to="/leaderboard">
+          <v-icon> mdi-chart-bar</v-icon>
+        </v-btn>
+
         <v-btn
           icon @click ="toggleMenu">
           <v-icon> mdi-hamburger</v-icon>
