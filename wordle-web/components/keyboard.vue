@@ -40,7 +40,7 @@
           class="pa-0"
           :disable="wordleGame.gameOver"
           :candidatesArray="candidatesArray"
-          :display="render"
+          :display.sync="render"
           @fill-word="fillWord"
         />
       </v-col>
@@ -117,6 +117,7 @@ export default class KeyBoard extends Vue {
       this.wordleGame.submitWord()
       // this.wordleGame.currentWord
       this.candidatesArray = WordsService.validWords('')
+      this.render = false
     }
   }
 
@@ -125,8 +126,8 @@ export default class KeyBoard extends Vue {
       this.removeLetter()
     }
 
-    for (const c of str.split('')) {
-      this.setLetter(c.toLowerCase())
+    for (const choice of str.split('')) {
+      this.setLetter(choice.toLowerCase())
     }
   }
 
