@@ -71,7 +71,7 @@ export default class Game extends Vue {
   playerName: string ="Guest";
   tempName = this.playerName;
   stopwatch: Stopwatch = new Stopwatch();
-  unposted: boolean = false; //remains false unless a player is prompted to change their name at the end of the game
+  unposted: boolean = false; // remains false unless a player is prompted to change their name at the end of the game
 
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
@@ -87,7 +87,7 @@ export default class Game extends Vue {
   resetGame() {
     this.word = WordsService.getRandomWord()
     this.wordleGame = new WordleGame(this.word)
-    this.unposted = false //Should never be needed
+    this.unposted = false // Should never be needed
   }
 
   get gameResult() {
@@ -108,6 +108,8 @@ export default class Game extends Vue {
         this.unposted = true;
 
         this.leaderboardPrompt = true;
+      } else{
+        this.postGameToLeaderboard();
       }
   }
 
@@ -121,8 +123,8 @@ export default class Game extends Vue {
 
   cancelNameEntry(originalName :string) {
     this.playerName = this.tempName;
-    if(this.unposted){ //unposted is only true if a player is prompted with a rename at the very end of a game.
-      this.postGameToLeaderboard(); //If called during a lost game, the score is not recorded. See PostGameToLeaderboard
+    if(this.unposted){ // unposted is only true if a player is prompted with a rename at the very end of a game.
+      this.postGameToLeaderboard(); // If called during a lost game, the score is not recorded. See PostGameToLeaderboard
     }
   }
 
