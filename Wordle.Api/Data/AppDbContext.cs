@@ -11,10 +11,10 @@ namespace Wordle.Api.Data
         {
         }
 
-        public DbSet<ScoreStat> ScoreStats { get; set; } = null!;
-        public DbSet<Player> Players { get; set; } = null!;
-        public DbSet<PlayerWord> PlayerWords { get; set; } = null!;
-        public DbSet<PlayerWordGuess> PlayerWordGuesss { get; set; } = null!;
-        public DbSet<Word> Words { get; set; } = null!;
+        public DbSet<ScoreStat> ScoreStats => Set<ScoreStat>();
+        public DbSet<Player> Players => Set<Player>();
+        public DbSet<PlayerWord> PlayerWords => Set<PlayerWord>();
+        public DbSet<PlayerWordGuess> PlayerWordGuesss => Set<PlayerWordGuess>();
+        public DbSet<Word> Words => Set<Word>();
     }
 }
