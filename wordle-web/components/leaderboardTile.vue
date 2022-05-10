@@ -1,17 +1,17 @@
 <template>
   <v-card>
     <slot name="icon"></slot>
-    <v-row cols="4">
-      <v-col>
+    <v-row cols="9">
+      <v-col colspan="3">
         <v-card-text>{{ player.name }}</v-card-text>
       </v-col>
-      <v-col>
+      <v-col colspan="2">
         <v-card-text>{{ player.gameCount }}</v-card-text>
       </v-col>
-      <v-col>
+      <v-col colspan="2">
         <v-card-text>{{ player.averageAttempts }}</v-card-text>
       </v-col>
-      <v-col>
+      <v-col colspan="2">
         <v-card-text>{{ player.averageSecondsPerGame }}</v-card-text>
       </v-col>
     </v-row>

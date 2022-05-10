@@ -3,6 +3,20 @@
     <v-card width=80%>
       <v-col  v-if="getSuccessful" justify="center" dense no-gutters>
         <v-row v-for="(player, i) in scores" :key="i" dense no-gutters >
+          <v-row cols="9">
+            <v-col colspan="3">
+              <v-card-text>Name</v-card-text>
+            </v-col>
+            <v-col colspan="2">
+              <v-card-text>Games Played</v-card-text>
+            </v-col>
+            <v-col colspan="2">
+              <v-card-text>Average Attempts</v-card-text>
+            </v-col>
+            <v-col colspan="2">
+              <v-card-text>Average Seconds</v-card-text>
+            </v-col>
+          </v-row>
           <leaderboardTile :player="player">
             <slot name="icon">
               <v-icon v-if="i === 1">mdi-crown</v-icon>
