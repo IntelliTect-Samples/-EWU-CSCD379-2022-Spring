@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card fluid>
     <slot name="icon"></slot>
     <v-row cols="9">
       <v-col colspan="3">
