@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <slot name="icon"></slot>
-    <v-row>
+    <v-row cols="4">
       <v-col>
         <v-card-text>{{ player.name }}</v-card-text>
       </v-col>

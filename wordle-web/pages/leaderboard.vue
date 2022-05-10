@@ -1,9 +1,9 @@
 <template>
   <v-container fluid fill-height justify-center>
     <v-card width=80%>
-      <v-col justify="center" dense no-gutters>
-        <v-row v-for="(player, i) in scores" :key="player" dense no-gutters>
-          <leaderboardTile :data="player">
+      <v-col  v-if="getSuccessful" justify="center" dense no-gutters>
+        <v-row v-for="(player, i) in scores" :key="i" dense no-gutters >
+          <leaderboardTile :player="player">
             <slot name="icon">
               <v-icon v-if="i === 1">mdi-crown</v-icon>
             </slot>
@@ -18,14 +18,16 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+import {Component, Vue, Prop} from 'vue-property-decorator'
 import {Player} from "~/scripts/player"
 
 @Component({})
 export default class ScoreBoard extends Vue {
   scores: Player[] = [];
 
-  mounted() {
+  getSuccessful: boolean = false;
+
+  created() {
     this.getTopTen();
   }
 
@@ -33,6 +35,8 @@ export default class ScoreBoard extends Vue {
     this.$axios.get('/api/Player')
       .then(response => {
         this.scores = response.data;
+        console.log(this.scores)
+        this.getSuccessful = true;
       })
   }
 
