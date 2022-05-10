@@ -1,6 +1,6 @@
 <template>
   <v-card fluid>
-    <slot name="icon"></slot>
+    <slot name="icon"> </slot>
     <v-row cols="9">
       <v-col colspan="3">
         <v-card-text>{{ player.name }}</v-card-text>
