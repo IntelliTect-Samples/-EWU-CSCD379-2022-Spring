@@ -108,8 +108,6 @@ export default class Game extends Vue {
         this.unposted = true;
 
         this.leaderboardPrompt = true;
-      } else{
-        this.postGameToLeaderboard();
       }
   }
 
