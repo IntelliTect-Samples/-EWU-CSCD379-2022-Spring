@@ -88,6 +88,7 @@ export default class Game extends Vue {
     this.word = WordsService.getRandomWord()
     this.wordleGame = new WordleGame(this.word)
     this.unposted = false // Should never be needed
+    this.stopwatch.Start();
   }
 
   get gameResult() {
