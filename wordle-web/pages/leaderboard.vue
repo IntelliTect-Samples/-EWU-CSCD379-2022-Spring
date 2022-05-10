@@ -17,11 +17,10 @@
           </v-col>
         </v-row>
         <v-row v-for="(player, i) in scores" :key="i" colspan="9" dense no-gutters >
-          <leaderboardTile :player="player">
-            <slot name="icon">
-              <v-icon v-if="i === 1">mdi-crown</v-icon>
-            </slot>
-          </leaderboardTile>
+          <v-icon v-if="i === 0" color = yellow>mdi-crown</v-icon>
+           <v-icon v-if="i === 1" >mdi-crown</v-icon>
+            <v-icon v-if="i === 2" color = brown>mdi-crown</v-icon>
+          <leaderboardTile :player="player" />
         </v-row>
       </v-col>
       <v-card-actions>
