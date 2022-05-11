@@ -21,18 +21,15 @@
         <v-card-actions align="center">
           <v-spacer />
           <v-btn color="primary" nuxt to="/game" align="center"> Game Page </v-btn>
-          <v-btn
-            color="secondary"
-            :loading="isLoading"
-            @click="changeButtonText"
-          >
-            Change Text
-          </v-btn>
+          <v-btn color="primary" nuct to="/leaderboard" align="center">Leader Board</v-btn>
         </v-card-actions>
+
       </v-card>
     </v-col>
   </v-row>
 </template>
+
+
 
 <script lang="ts">
 import Vue from 'vue'
@@ -53,4 +50,5 @@ export default class IndexPage extends Vue {
     }, 1000)
   }
 }
+
 </script>
