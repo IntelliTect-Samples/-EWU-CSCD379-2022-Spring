@@ -1,8 +1,7 @@
 <template>
   <v-card color ="rgba(35,35,35,255)" class ="mx-3 my-3" fluid shaped width = 100% min-height = "50px" align = right>
-    <v-row cols="9" >
+    <v-row cols="9">
       <v-col colspan="3">
-        <v-icon v-if="i == 0" color = yellow>mdi-crown</v-icon> 
         <v-card-text>{{ player.name }}</v-card-text>
       </v-col>
       <v-col colspan="2">
