@@ -5,6 +5,10 @@
       <v-icon> mdi-help </v-icon>
     </v-btn>
 
+    <v-btn icon nuxt to="/leaderboard">
+      <v-icon>mdi-podium-gold</v-icon>
+    </v-btn>
+
     <v-btn icon @click="aboutDialog">
       <v-icon> mdi-hamburger</v-icon>
     </v-btn>
