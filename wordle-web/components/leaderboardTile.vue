@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import {Component, Vue, Prop} from 'vue-property-decorator'
-import {Player} from "~/scripts/player";
+import {Player} from '~/scripts/player'
 
 @Component({components: {}})
 export default class GameBoard extends Vue {
