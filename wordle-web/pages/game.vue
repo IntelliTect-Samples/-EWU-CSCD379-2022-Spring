@@ -68,8 +68,7 @@ import axios from 'axios'
 
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
-  playerName: string ="Guest";
-  tempName = this.playerName;
+  playerName: string = localStorage.getItem('playerName') || "Guest";
   stopwatch: Stopwatch = new Stopwatch();
   unposted: boolean = false; // remains false unless a player is prompted to change their name at the end of the game
 
@@ -115,13 +114,13 @@ export default class Game extends Vue {
   getLetter(row: number, index: number) {
     const word: Word = this.wordleGame.words[row - 1]
     if (word !== undefined) {
-      return word.letters[index - 1]?.char ?? ''
+      return word.letters[index - 1]?.char ?? '' 
     }
     return ''
   }
 
   cancelNameEntry(originalName :string) {
-    this.playerName = this.tempName;
+    this.playerName = localStorage.getItem('playerName') as string
     if(this.unposted){ // unposted is only true if a player is prompted with a rename at the very end of a game.
       this.postGameToLeaderboard(); // If called during a lost game, the score is not recorded. See PostGameToLeaderboard
     }
@@ -130,7 +129,7 @@ export default class Game extends Vue {
   submitName(){
     if(this.playerName ==="")
       this.playerName="Guest"
-    this.tempName = this.playerName;
+    localStorage.setItem('playerName',this.playerName) 
     if(this.unposted){
       this.postGameToLeaderboard();
     }
