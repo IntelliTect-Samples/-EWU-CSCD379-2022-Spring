@@ -84,7 +84,7 @@ export default class KeyBoard extends Vue {
   }
   
   makeSound(){
-    let sound = new Audio("http://peal.io/download/feju3")
+    const sound = new Audio("http://peal.io/download/feju3")
     sound.currentTime=0;
     sound.play()
     setInterval(function(){

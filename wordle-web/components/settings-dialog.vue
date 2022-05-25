@@ -27,8 +27,20 @@
           <v-card-text>
             <v-menu offset-y>
               <template #activator="{ on, attrs }">
-                <v-btn color="primary" dark v-bind="attrs" v-on="on" nuxt to="/about">
+                <v-btn color="primary" dark v-bind="attrs" nuxt to="/about" v-on="on" >
                   About
+                </v-btn>
+              </template>
+            </v-menu>
+
+           
+          </v-card-text>
+
+          <v-card-text>
+            <v-menu offset-y>
+              <template #activator="{ on, attrs }">
+                <v-btn color="primary" dark v-bind="attrs" @click="helpDialog" v-on="on" >
+                  How to play
                 </v-btn>
               </template>
             </v-menu>
@@ -134,6 +146,8 @@
                 </v-list-item-group>
               </v-list>
             </v-menu>
+
+            
           </v-card-text>
         </v-container>
       </v-card>
@@ -196,6 +210,7 @@ export default class SettingsDialog extends Vue {
     this.$vuetify.theme.themes.dark = purpleTheme
     this.$vuetify.theme.themes.light = purpleTheme
   }
+  
     vampireTheme() {
     const vampireTheme = {
       primary: colors.red,
