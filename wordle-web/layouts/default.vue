@@ -57,27 +57,17 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  name: 'DefaultLayout',
-
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+@Component({})
+export default class Default  extends Vue{
+name : string ="DefaultLayout";
   data() {
+     let clipped: boolean = false
+      let right: boolean = true
+      let rightDrawer: boolean= false
+      let title: string= '!Wordle'
     return {
-      clipped: false,
-      right: true,
-      rightDrawer: false,
-      title: '!Wordle',
-    }
-  },
-}
-</script>
-
-<!-- 
-<v-tooltip bottom>
-      <template #activator="{ on, attrs }">
-        <v-btn color="info" nuxt to="/leaderboard" fab v-bind="attrs" v-on="on">
-          <v-icon> mdi-equalizer </v-icon>
-        </v-btn>
-      </template>
-      <span> Leader Board </span>
-    </v-tooltip> -->
+      clipped, right, rightDrawer,title
+  }}
+  </script>
