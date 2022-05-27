@@ -1,5 +1,13 @@
 <template>
   <v-container fluid fill-height justify-center>
+    <v-tooltip bottom>
+      <template #activator="{ on, attrs }">
+        <v-btn color="primary" nuxt to="/" fab v-bind="attrs" v-on="on">
+          <v-icon> mdi-home </v-icon>
+        </v-btn>
+      </template>
+      <span> Go Home </span>
+    </v-tooltip>
     <v-card>
       <v-card-title>
         <h1 class="display-1">Score Stats</h1>

@@ -17,7 +17,7 @@
       </v-container>
     </v-main>
 
-    <v-navigation-drawer v-model="drawer" absolute temporary right>
+     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list nav dense>
         <v-list-item-group v-model="group" color="secondary">
           <v-list-item nuxt to="/">
@@ -48,12 +48,27 @@
             <v-list-item-title>About</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
+
+          <v-list-item>
+            <v-btn text block nuxt to="/leaderboard">
+              Leader Board <v-icon>mdi-equalizer</v-icon>
+            </v-btn>
+          </v-list-item>
+
+            <v-list-item>
+          <v-btn text block nuxt to="/dailywordgame">
+            <v-icon>mdi-controller-classic</v-icon>
+            <v-spacer></v-spacer>
+            Daily Wordle
+          </v-btn>
+        </v-list-item>
+
       </v-list>
     </v-navigation-drawer>
 
     <v-footer :absolute="!fixed" app>
       <v-spacer />
-      <span>&copy; Kelsey McMahon {{ new Date().getFullYear() }}</span>
+      <span>&copy; Michael Wright {{ new Date().getFullYear() }}</span>
       <v-spacer />
     </v-footer>
   </v-app>

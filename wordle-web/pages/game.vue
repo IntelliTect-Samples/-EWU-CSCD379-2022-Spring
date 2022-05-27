@@ -27,6 +27,7 @@
        </v-icon>
         {{playerName}}
       </v-btn>
+      
 
 
     <game-board :wordle-game="wordleGame" />
@@ -42,7 +43,10 @@ import { GameState, WordleGame } from '~/scripts/wordleGame'
 import KeyBoard from '@/components/keyboard.vue'
 import GameBoard from '@/components/game-board.vue'
 import { Word } from '~/scripts/word'
+import {Stopwatch} from '~/scripts/stopwatch'
 import {Player} from '~/scripts/player'
+import axios from 'axios'
+
 
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
