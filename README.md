@@ -2,7 +2,7 @@
 
 ## App link
 App:
-https://red-desert-0f3146210.1.azurestaticapps.net/
+https://kind-river-05419991e.1.azurestaticapps.net
 API:
 https://wordle-api-scoreboard.azurewebsites.net/swagger/index.html
 
