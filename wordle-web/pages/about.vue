@@ -6,7 +6,7 @@
         <v-card-text>
           <p>
             This game was created as a class project at Eastern Washington
-            University. The creative concept for Generic Word Game was inspired
+            University. The creative concept for Defintely Not Wordle was inspired
             by my great instructor Meg! This is coming from branch!
           </p>
         </v-card-text>

@@ -3,11 +3,11 @@
     <v-col cols="12" sm="8" md="6">
       <v-card>
         <v-card-title class="headline">
-          Welcome to Generic Word Game!
+          Welcome to Defintely Not Wordle!
         </v-card-title>
         <v-card-text>
           <p>
-            This game is an original word game that is fun for the whole family!
+            This game totally isn't a rip off and is an original word game that is fun for the whole family!
             This game will be the highlight at all your parties.
           </p>
         </v-card-text>

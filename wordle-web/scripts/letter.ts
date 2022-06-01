@@ -29,7 +29,7 @@ export class Letter {
         return 'warning'
       }
       case LetterStatus.Wrong: {
-        return 'info'
+        return 'error'
       }
     }
   }

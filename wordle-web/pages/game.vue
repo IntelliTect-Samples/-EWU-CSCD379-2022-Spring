@@ -10,16 +10,37 @@
     elevation="0"
     width="50%"
     :persistent="true">
-      <v-card class = "px-0 py-0 mx-0 my-0 justify-center" min-height="200">
-        <h1>Create your username!!</h1>
-        <v-divider />
-          <v-text-field v-model="playerName" outlined class ="px-15 my-3" />
-            <v-card-actions>
-              <v-btn @click="leaderboard=false, submitName()"> Please enter your username here </v-btn>
-              <v-spacer />
-              <v-btn @click="leaderboard=false, cancelNameEntry()"> I prefer to remain nameless </v-btn>
-            </v-card-actions>
-      </v-card>
+     <v-col cols="5" class="d-flex flex-row-reverse">
+          <v-dialog v-model="dialog" justify-end persistent max-width="600px">
+            <template #activator="{ on, attrs }">
+              <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                {{ playerName }}
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-text>
+                <v-text-field
+                  v-model="playerName"
+                  type="text"
+                  placeholder="Guest"
+                ></v-text-field>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="dialog = false">
+                  Close
+                </v-btn>
+                <v-btn
+                  color="blue darken-1"
+                  text
+                  @click=";(dialog = false), setUserName(playerName)"
+                >
+                  Save
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-col>
     </v-dialog>
       <v-btn plain @click="leaderboard=true">
         <v-icon dark>
@@ -55,6 +76,7 @@ export default class Game extends Vue {
   playerName: string = "Guest";
   tempName = this.playerName;
   unposted: boolean = false;
+  stopwatch: Stopwatch = new Stopwatch();
 
   resetGame() {
     this.word = WordsService.getRandomWord()
@@ -71,6 +93,17 @@ export default class Game extends Vue {
       return { type: 'error', text: `You lost... :( The word was ${this.word}` }
     }
     return { type: '', text: '' }
+  }
+
+   mounted() {
+    if (!this.stopwatch.isRunning) {
+      this.stopwatch.Start();
+    }
+    this.retrieveUserName()
+  }
+
+  displayTimer(): string {
+    return this.stopwatch.getFormattedTime();
   }
 
   getLetter(row: number, index: number) {
@@ -92,15 +125,37 @@ export default class Game extends Vue {
       this.playerName="Guest"
     this.tempName = this.playerName;
     if(this.unposted){
-      //something. I think submit to leaderboard
     }
   }
 
   cancelNameEntry(originalName :string) {
     this.playerName = this.tempName;
     if(this.unposted){ 
-      //something. I think submit to leaderboard
     }
   }
+
+   setUserName(userName: string) {
+    localStorage.setItem('userName', userName)
+    if (this.wordleGame.state === GameState.Won) {
+      this.endGameSave()
+    }
+  }
+
+  retrieveUserName() {
+    const userName = localStorage.getItem('userName')
+    if (userName == null) {
+      this.playerName = 'Guest'
+    } else {
+      this.playerName = userName
+    }
+  }
+   endGameSave() {
+    this.$axios.post('/api/Players', {
+      name: this.playerName,
+      attempts: this.wordleGame.words.length,
+      seconds: Math.round(this.stopwatch.currentTime / 1000),
+    },);
+  }
+  
 }
 </script>

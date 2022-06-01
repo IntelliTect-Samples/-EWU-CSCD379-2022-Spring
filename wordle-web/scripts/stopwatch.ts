@@ -19,5 +19,9 @@ export class Stopwatch{
       this.isRunning = false
     }
   
-  
+    
+  getFormattedTime() {
+    return ((this.currentTime / 1000 / 60 / 60) > 1 ? Math.floor(this.currentTime / 1000 / 60 / 60) + ":" : "") 
+      + Math.floor(this.currentTime / 1000 / 60) % 60 + ":" + (Math.floor(this.currentTime / 1000 % 60) < 10 ? '0' + Math.floor(this.currentTime / 1000 % 60) : Math.floor(this.currentTime / 1000 % 60)) 
+  }
   }
