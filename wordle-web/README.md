@@ -1,8 +1,7 @@
 # wordle-app
 
 ## Web App Link
-
-https://red-desert-0f3146210.1.azurestaticapps.net/
+https://kind-river-05419991e.1.azurestaticapps.net
 
 ## Wordle API Link
 
