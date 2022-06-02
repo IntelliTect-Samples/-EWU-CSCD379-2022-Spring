@@ -25,3 +25,8 @@ public class AppDbContext : DbContext
 }
 
 
+uilder.Entity<Word>());
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        }
+    }        
+}

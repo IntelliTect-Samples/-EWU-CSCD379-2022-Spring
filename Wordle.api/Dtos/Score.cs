@@ -14,3 +14,7 @@ public class Score
     }
 }
 
+eGuesses = averageGuesses;
+        }
+    }
+}

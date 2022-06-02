@@ -37,3 +37,11 @@ public class LeaderBoardServiceMemory : ILeaderBoardService
 
 
 
+
+
+        public IEnumerable<Score> GetScores()
+        {
+            return _scores;
+        }
+    }
+}
