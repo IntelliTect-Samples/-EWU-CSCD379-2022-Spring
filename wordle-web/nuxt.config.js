@@ -27,7 +27,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '~/plugins/vue-google-adsense', ssr: false }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -55,6 +55,11 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    defaultAssets: {
+      font: {
+        family: 'Libre Baskerville',
+      },
+    },
     theme: {
       light: true,
       themes: {
@@ -77,6 +82,15 @@ export default {
           warning: '#fa8b34',
           error: colors.deepOrange.accent4,
           success: '#17cee6',
+        },
+        light: {
+          primary: colors.blue.darken2,
+          accent: colors.grey.darken2,
+          secondary: '#000000',
+          info: colors.grey.lighten1,
+          warning: colors.amber.base,
+          error: colors.grey.darken1,
+          success: colors.green.accent3,
         },
       },
     },

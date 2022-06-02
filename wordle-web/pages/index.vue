@@ -56,3 +56,4 @@ export default class IndexPage extends Vue {
   name: string = 'IndexPage'
 }
 </script>
+
