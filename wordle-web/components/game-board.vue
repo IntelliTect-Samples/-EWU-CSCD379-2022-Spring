@@ -37,6 +37,10 @@ export default class GameBoard extends Vue {
   @Prop({ required: true })
   wordleGame!: WordleGame
 
+   isMobile() {
+    return this.$vuetify.breakpoint.xsOnly
+  }
+
   getLetter(row: number, index: number): Letter | null {
     const word: Word = this.wordleGame.words[row - 1]
     if (word !== undefined) {
@@ -53,11 +57,6 @@ export default class GameBoard extends Vue {
   letterColor(letter: Letter | null): string {
     if (letter === null) return ''
     return letter.letterColor
-  }
-
-  @Watch("wordleGame.currentWord.letters")
-  doSomething(){
-    console.log(this.wordleGame.currentWord.letters.length);
   }
 }
 </script>

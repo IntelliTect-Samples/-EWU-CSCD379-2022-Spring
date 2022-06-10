@@ -73,9 +73,12 @@ import axios from 'axios'
 export default class Game extends Vue {
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
-  playerName: string = "Guest";
-  tempName = this.playerName;
-  unposted: boolean = false;
+  playerName: string = "Guest"
+  tempName = this.playerName
+  seconds: number = 0
+  unposted: boolean = false
+  startTime: number = 0
+  endTime: number = 0
   stopwatch: Stopwatch = new Stopwatch();
 
   resetGame() {
@@ -85,6 +88,8 @@ export default class Game extends Vue {
   }
 
   get gameResult() {
+    this.stopwatch.Stop()
+    this.seconds = Math.floor(this.endTime - this.startTime)
     if (this.wordleGame.state === GameState.Won) {
       this.gameOver();
       return { type: 'success', text: 'Yay! You won!' }
