@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wordle.api.Data;
-using Wordle.api.Services;
+using Wordle.Api.Data;
+using Wordle.Api.Services;
 
-namespace Wordle.api.Tests;
+namespace Wordle.Api.Tests;
 
 [TestClass]
 public class PlayerServiceTests

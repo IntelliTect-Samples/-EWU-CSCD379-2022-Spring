@@ -1,8 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using Wordle.api.Services;
+using Wordle.Api.Services;
 
-namespace Wordle.api.Tests
+namespace Wordle.Api.Tests
 {
     [TestClass]
     public class LeaderboardMemoryServiceTest

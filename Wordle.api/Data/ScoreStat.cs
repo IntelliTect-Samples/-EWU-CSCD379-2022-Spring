@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Wordle.api.Data;
+namespace Wordle.Api.Data;
 
 public class ScoreStat
 {

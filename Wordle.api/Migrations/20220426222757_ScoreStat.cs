@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Wordle.api.Migrations
+namespace Wordle.Api.Migrations
 {
     public partial class ScoreStat : Migration
     {

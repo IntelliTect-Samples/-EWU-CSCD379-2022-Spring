@@ -1,5 +1,5 @@
-using Wordle.api.Services;
-using Wordle.api.Data;
+using Wordle.Api.Services;
+using Wordle.Api.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +16,7 @@ var allowAll = builder.Services.AddCors(options => {
 });
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Learn more about configuring Swagger/OpenApi at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ILeaderboardService, LeaderboardServiceMemory>();

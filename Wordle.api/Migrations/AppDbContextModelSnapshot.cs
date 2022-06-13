@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Wordle.api.Data;
+using Wordle.Api.Data;
 
 #nullable disable
 
-namespace Wordle.api.Migrations
+namespace Wordle.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -21,7 +21,7 @@ namespace Wordle.api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Wordle.api.Data.Player", b =>
+            modelBuilder.Entity("Wordle.Api.Data.Player", b =>
                 {
                     b.Property<int>("PlayerID")
                         .ValueGeneratedOnAdd()
@@ -44,7 +44,7 @@ namespace Wordle.api.Migrations
                     b.ToTable("Players");
                 });
 
-            modelBuilder.Entity("Wordle.api.Data.ScoreStat", b =>
+            modelBuilder.Entity("Wordle.Api.Data.ScoreStat", b =>
                 {
                     b.Property<int>("ScoreStatID")
                         .ValueGeneratedOnAdd()

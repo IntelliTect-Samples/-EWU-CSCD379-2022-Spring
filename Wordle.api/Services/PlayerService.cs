@@ -1,6 +1,6 @@
-﻿using Wordle.api.Data;
+﻿using Wordle.Api.Data;
 
-namespace Wordle.api.Services;
+namespace Wordle.Api.Services;
 
 public class PlayerService
 {

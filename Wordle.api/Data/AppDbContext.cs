@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Wordle.api.Data;
+namespace Wordle.Api.Data;
 
 public class AppDbContext : DbContext
 {

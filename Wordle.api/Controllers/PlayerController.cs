@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Wordle.api.Services;
-using Wordle.api.Data;
+using Wordle.Api.Services;
+using Wordle.Api.Data;
 
-namespace Wordle.api.Controllers;
+namespace Wordle.Api.Controllers;
 
-[Route("api/[controller]")]
+[Route("Api/[controller]")]
 [ApiController]
 public class PlayerController : ControllerBase
 {
