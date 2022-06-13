@@ -57,3 +57,4 @@ import { Component, Vue } from 'vue-property-decorator'
 export default class HelpDialog extends Vue {
   dialog = false
 }
+</script>

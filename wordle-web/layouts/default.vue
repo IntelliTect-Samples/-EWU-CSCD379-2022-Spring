@@ -93,7 +93,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import SettingsDialog from '@/components/settings-dialog.vue'
-import HelpDialog from '@/components/help.vue'
+import HelpDialog  from '@/components/help.vue'
 
 @Component({ components: { SettingsDialog , HelpDialog } })
 export default class DefaultLayout extends Vue {

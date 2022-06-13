@@ -77,125 +77,125 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { GameState, WordleGame } from '~/scripts/wordleGame'
-import KeyBoard from '@/components/keyboard.vue'
-import GameBoard from '@/components/game-board.vue'
-import { Word } from '~/scripts/word'
-@Component({ components: { KeyBoard, GameBoard } })
-export default class DailyWordGame extends Vue {
-  pageName = 'Daily Words'
-  word: string = ''
-  wordleGame = new WordleGame(this.word)
-  playerName = ''
-  dialog = false
-  isLoaded: boolean = false
-  timeInSeconds: number = 0
-  startTime: number = 0
-  endTime: number = 0
-  intervalID: any
-  overlay = true
-  month = 0
-  day = 0
-  year = 0
-  isMobile() {
-    return this.$vuetify.breakpoint.xsOnly
-  }
-  mounted() {
-    setTimeout(() => this.startTimer(), 5000)
-    this.retrieveUserName()
-    const currentDate = new Date()
-    this.month = currentDate.getMonth() + 1
-    this.year = currentDate.getFullYear()
-    this.day = currentDate.getDate()
-    this.getDailyWord()
-  }
-  getDailyWord() {
-    const date =
-      this.month.toString() +
-      '/' +
-      this.day.toString() +
-      '/' +
-      this.year.toString()
-    this.overlay = true
-    this.$axios
-      .get('/DateWord', { params: { date } })
-      .then((response) => {
-        this.word = response.data
-      })
-      .finally(() => {
-        this.overlay = false
-        this.wordleGame = new WordleGame(this.word)
-      })
-  }
-  get gameResult() {
-    this.stopTimer()
-    this.timeInSeconds = Math.floor(this.endTime - this.startTime)
-    if (this.wordleGame.state === GameState.Won) {
-      if (
-        this.playerName.toLocaleLowerCase() !== 'guest' &&
-        this.playerName !== ''
-      ) {
-        this.endGameSave()
+  import { Component, Vue } from 'vue-property-decorator'
+  import { GameState, WordleGame } from '~/scripts/wordleGame'
+  import KeyBoard from '@/components/keyboard.vue'
+  import GameBoard from '@/components/game-board.vue'
+  import { Word } from '~/scripts/word'
+  @Component({ components: { KeyBoard, GameBoard } })
+  export default class DailyWordGame extends Vue {
+    pageName = 'Daily Words'
+    word: string = ''
+    wordleGame = new WordleGame(this.word)
+    playerName = ''
+    dialog = false
+    isLoaded: boolean = false
+    timeInSeconds: number = 0
+    startTime: number = 0
+    endTime: number = 0
+    intervalID: any
+    overlay = true
+    month = 0
+    day = 0
+    year = 0
+    isMobile() {
+      return this.$vuetify.breakpoint.xsOnly
+    }
+    mounted() {
+      setTimeout(() => this.startTimer(), 5000)
+      this.retrieveUserName()
+      const currentDate = new Date()
+      this.month = currentDate.getMonth() + 1
+      this.year = currentDate.getFullYear()
+      this.day = currentDate.getDate()
+      this.getDailyWord()
+    }
+    getDailyWord() {
+      const date =
+        this.month.toString() +
+        '/' +
+        this.day.toString() +
+        '/' +
+        this.year.toString()
+      this.overlay = true
+      this.$axios
+        .get('/DateWord', { params: { date } })
+        .then((response) => {
+          this.word = response.data
+        })
+        .finally(() => {
+          this.overlay = false
+          this.wordleGame = new WordleGame(this.word)
+        })
+    }
+    get gameResult() {
+      this.stopTimer()
+      this.timeInSeconds = Math.floor(this.endTime - this.startTime)
+      if (this.wordleGame.state === GameState.Won) {
+        if (
+          this.playerName.toLocaleLowerCase() !== 'guest' &&
+          this.playerName !== ''
+        ) {
+          this.endGameSave()
+        } else {
+          this.dialog = true
+        }
+        return { type: 'success', text: 'You won! :^)' }
+      }
+      if (this.wordleGame.state === GameState.Lost) {
+        return {
+          type: 'error',
+          text: `You lost... :^( The word was ${this.word}`,
+        }
+      }
+      return { type: '', text: '' }
+    }
+    getLetter(row: number, index: number) {
+      const word: Word = this.wordleGame.words[row - 1]
+      if (word !== undefined) {
+        return word.letters[index - 1]?.char ?? ''
+      }
+      return ''
+    }
+    retrieveUserName() {
+      const userName = localStorage.getItem('userName')
+      if (userName == null) {
+        this.playerName = 'Guest'
       } else {
-        this.dialog = true
-      }
-      return { type: 'success', text: 'You won! :^)' }
-    }
-    if (this.wordleGame.state === GameState.Lost) {
-      return {
-        type: 'error',
-        text: `You lost... :^( The word was ${this.word}`,
+        this.playerName = userName
       }
     }
-    return { type: '', text: '' }
-  }
-  getLetter(row: number, index: number) {
-    const word: Word = this.wordleGame.words[row - 1]
-    if (word !== undefined) {
-      return word.letters[index - 1]?.char ?? ''
+    setUserName(userName: string) {
+      localStorage.setItem('userName', userName)
+      if (this.wordleGame.state === GameState.Won) {
+        this.endGameSave()
+      }
     }
-    return ''
-  }
-  retrieveUserName() {
-    const userName = localStorage.getItem('userName')
-    if (userName == null) {
-      this.playerName = 'Guest'
-    } else {
-      this.playerName = userName
+    startTimer() {
+      this.startTime = Date.now() / 1000
+      this.intervalID = setInterval(this.updateTimer, 1000)
+    }
+    updateTimer() {
+      this.timeInSeconds = Math.floor(Date.now() / 1000 - this.startTime)
+    }
+    stopTimer() {
+      this.endTime = Date.now() / 1000
+      clearInterval(this.intervalID)
+    }
+    endGameSave() {
+      this.$axios.post('/api/Players', {
+        name: this.playerName,
+        attempts: this.wordleGame.words.length,
+        seconds: this.timeInSeconds,
+      })
+      this.$axios.post('/DateWord/CreateDateWord', {
+        month: this.month,
+        day: this.day,
+        year: this.year,
+        number0fAttempts: this.wordleGame.words.length,
+        seconds: this.timeInSeconds,
+        playerName: this.playerName,
+      })
     }
   }
-  setUserName(userName: string) {
-    localStorage.setItem('userName', userName)
-    if (this.wordleGame.state === GameState.Won) {
-      this.endGameSave()
-    }
-  }
-  startTimer() {
-    this.startTime = Date.now() / 1000
-    this.intervalID = setInterval(this.updateTimer, 1000)
-  }
-  updateTimer() {
-    this.timeInSeconds = Math.floor(Date.now() / 1000 - this.startTime)
-  }
-  stopTimer() {
-    this.endTime = Date.now() / 1000
-    clearInterval(this.intervalID)
-  }
-  endGameSave() {
-    this.$axios.post('/api/Players', {
-      name: this.playerName,
-      attempts: this.wordleGame.words.length,
-      seconds: this.timeInSeconds,
-    })
-    this.$axios.post('/DateWord/CreateDateWord', {
-      month: this.month,
-      day: this.day,
-      year: this.year,
-      number0fAttempts: this.wordleGame.words.length,
-      seconds: this.timeInSeconds,
-      playerName: this.playerName,
-    })
-  }
-}
 </script>
