@@ -4,6 +4,8 @@ Please feel free to submit updates.
 
 [Lectures Link](Lectures.md)
 
+[The Final Game](https://calm-meadow-06c89a91e.1.azurestaticapps.net/)
+
 ## Instructors ##
 [Grant Erickson](https://github.com/GrantErickson), [Meg Woodford](https://github.com/mmwoodfo), and [Mark Michaelis](https://github.com/MarkMichaelis)
 For general questions, we suggest asking in Teams so that others can help as well. We encourage people to work together and collaborate. Please feel free to help your fellow students out. Though it is possible to privately message people directly, as much as possible, we encourage open discussion on the main chat so that others can benefit as well.
